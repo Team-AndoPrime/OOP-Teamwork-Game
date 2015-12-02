@@ -1,17 +1,21 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BadSanta.Managers;
+using BadSanta.States;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace BadSanta
+namespace BadSanta.Core
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
     public class GameEngine : Game
     {
-        private Texture2D menuBackground;
+        private StateManager stateManager;
+        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
 
         public GameEngine()
         {
@@ -32,7 +36,7 @@ namespace BadSanta
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            stateManager = new StateManager(this.Content);
 
             base.Initialize();
         }
@@ -45,8 +49,8 @@ namespace BadSanta
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            menuBackground = Content.Load<Texture2D>("Images/Backgrounds/menuBackground");
+            
+            
             // TODO: use this.Content to load your game content here
         }
 
@@ -82,6 +86,10 @@ namespace BadSanta
                 }
                 graphics.ApplyChanges();
             }
+            else if (Keyboard.GetState().IsKeyDown(Keys.P))
+            {
+                this.stateManager.CurrentState = new GameState(this.Content);
+            }
 
             // TODO: Add your update logic here
 
@@ -96,12 +104,10 @@ namespace BadSanta
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-
             spriteBatch.Begin();
 
-            spriteBatch.Draw(menuBackground, new Vector2(0, 0), Color.White);
-
+            stateManager.CurrentState.Draw(spriteBatch);
+            
             spriteBatch.End();
             base.Draw(gameTime);
         }

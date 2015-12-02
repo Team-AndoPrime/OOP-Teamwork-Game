@@ -1,4 +1,5 @@
 ﻿using System;
+using BadSanta.Core;
 
 namespace BadSanta
 {

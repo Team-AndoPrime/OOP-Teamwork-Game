@@ -1,5 +1,4 @@
 ﻿using BadSanta.Managers;
-using BadSanta.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -11,19 +10,26 @@ namespace BadSanta.Core
     /// </summary>
     public class GameEngine : Game
     {
-        private StateManager stateManager;
-        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        private InputHandler inputHandler;
+        private StateManager stateManager;
+
+        public const int MaxWidth = 1920;
+        public const int MaxHeight = 1080;
+
+        private float scale;
+
+        private Matrix scaleMatrix;
 
         public GameEngine()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferHeight = 720;
+
             graphics.PreferredBackBufferWidth = 1280;
-            
+            graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
             
         }
@@ -36,7 +42,11 @@ namespace BadSanta.Core
         /// </summary>
         protected override void Initialize()
         {
-            stateManager = new StateManager(this.Content);
+            this.stateManager = new StateManager(this.Content);
+
+            this.inputHandler = new InputHandler(this.graphics);
+            
+            this.IsMouseVisible = true;
 
             base.Initialize();
         }
@@ -49,9 +59,7 @@ namespace BadSanta.Core
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
-            
-            // TODO: use this.Content to load your game content here
+
         }
 
         /// <summary>
@@ -60,38 +68,37 @@ namespace BadSanta.Core
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            this.Content.Unload();
         }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
+        /// 
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            this.scale = (float)graphics.GraphicsDevice.Viewport.Width / MaxWidth;
+
+            this.scaleMatrix = Matrix.CreateScale(scale, scale, 1f);
+
+            inputHandler.CheckForKeyboardInput(this.stateManager);
+
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.F))
-            {
-                if (graphics.IsFullScreen)
-                {
-                    graphics.IsFullScreen = false;
-                }
-                else
-                {
-                    graphics.IsFullScreen = true;
-                }
-                graphics.ApplyChanges();
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.P))
-            {
-                this.stateManager.CurrentState = new GameState(this.Content);
-            }
 
-            // TODO: Add your update logic here
+            if (this.stateManager.CurrentState.GetType().Name == "GameState")
+            {
+                this.IsMouseVisible = false;
+            }
+            else
+            {
+                this.IsMouseVisible = true;
+                inputHandler.CheckForMouseInput(this.stateManager);
+            }
 
             base.Update(gameTime);
         }
@@ -104,11 +111,12 @@ namespace BadSanta.Core
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, scaleMatrix);
 
             stateManager.CurrentState.Draw(spriteBatch);
-            
+
             spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }

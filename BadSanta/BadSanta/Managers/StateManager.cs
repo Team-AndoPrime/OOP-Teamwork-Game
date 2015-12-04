@@ -13,7 +13,6 @@ namespace BadSanta.Managers
         {
             this.content = content;
             this.currentState = new MenuState(this.Content);
-
         }
 
         public ContentManager Content => this.content;

@@ -45,7 +45,9 @@ namespace BadSanta.Core
         protected override void Initialize()
         {
             this.stateManager = new StateManager(this.Content);
+
             ContentLoader = new ContentLoader(this.Content);
+
             this.inputHandler = new InputHandler(this.graphics);
             
             this.IsMouseVisible = true;

@@ -1,43 +1,18 @@
-﻿using System;
-using BadSanta.Core;
-using BadSanta.Exceptions;
-using BadSanta.Interfaces;
-using Microsoft.Xna.Framework.Graphics;
+﻿using BadSanta.Exceptions;
+using BadSanta.Objects.Projectiles;
 
 namespace BadSanta.Objects.Items.Weapons
 {
-    public abstract class Firearm : Weapon, IProjectile
+    public abstract class Firearm : Weapon
     {
-
-        private float projectileVelocity;
-        private Texture2D projectileTexture;
         private int fireRate;
+        private Bullet bullet;
 
-        protected Firearm(int fireRate, int reloadRate, float bonusDamage, int range, float projectileVelocity, string projectileTexturePath, string weaponTexture) 
+        protected Firearm(Bullet bullet, int fireRate, int reloadRate, float bonusDamage, int range, string weaponTexture) 
             : base(reloadRate, bonusDamage, range, weaponTexture)
         {
-            this.ProjectileTexture = this.Content.Load<Texture2D>(projectileTexturePath);
-            this.ProjectileVelocity = projectileVelocity;
+            this.bullet = bullet;
             this.FireRate = fireRate;
-        }
-
-        public float ProjectileVelocity
-        {
-            get { return this.projectileVelocity; }
-            private set
-            {
-                if (value <= 0)
-                {
-                    throw new InvalidProjectileVelocityException("Projectile Velocity cannot be zero or negative");
-                }
-                this.projectileVelocity = value;
-            }
-        }
-
-        public Texture2D ProjectileTexture
-        {
-            get { return this.projectileTexture; }
-            private set { this.projectileTexture = value; }
         }
 
         public int FireRate
@@ -51,6 +26,13 @@ namespace BadSanta.Objects.Items.Weapons
                 }
                 this.fireRate = value;
             }
+        }
+
+        public Bullet Bullet
+        {
+            get { return this.bullet; }
+            private set { this.bullet = value; }
+            
         }
     }
 }

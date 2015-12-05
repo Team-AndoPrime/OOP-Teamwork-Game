@@ -1,5 +1,4 @@
-﻿using System;
-using BadSanta.Exceptions;
+﻿using BadSanta.Exceptions;
 using BadSanta.Interfaces;
 
 namespace BadSanta.Objects.Items

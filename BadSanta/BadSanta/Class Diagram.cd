@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="BadSanta.Characters.Character" Collapsed="true">
-    <Position X="14" Y="1.75" Width="1.5" />
+    <Position X="13.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Characters\Character.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.ContentLoader" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="17.75" Y="0.5" Width="1.5" />
+    <Position X="26.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ContentLoader.cs</FileName>
@@ -16,70 +16,70 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="BadSanta.Launcher" Collapsed="true">
-    <Position X="19.5" Y="0.5" Width="1.5" />
+    <Position X="22.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Launcher.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Core.GameEngine" Collapsed="true">
-    <Position X="21.5" Y="0.5" Width="1.5" />
+    <Position X="28" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAEUAAAAACAwAAAAAAAAACACAAAAgAAAEAAAAAEBQ=</HashCode>
       <FileName>Core\GameEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Core.InputHandler" Collapsed="true">
-    <Position X="23.5" Y="0.5" Width="1.5" />
+    <Position X="24.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAIAAAAAAAgAEAAAAAAAAAA=</HashCode>
       <FileName>Core\InputHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Entities.Player" Collapsed="true">
-    <Position X="14.25" Y="0.5" Width="1.5" />
+    <Position X="15.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Exceptions.InvalidProjectileVelocityException" Collapsed="true">
-    <Position X="20.25" Y="4.75" Width="1.5" />
+    <Position X="16" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\InvalidProjectileVelocityException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Exceptions.InvalidWeaponDamageException" Collapsed="true">
-    <Position X="15.75" Y="6.25" Width="1.5" />
+    <Position X="15.75" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\InvalidWeaponDamageException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Exceptions.InvalidWeaponRangeException" Collapsed="true">
-    <Position X="18" Y="6.25" Width="1.5" />
+    <Position X="18" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\InvalidWeaponRangeException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Exceptions.InvalidWeaponReloadRateException" Collapsed="true">
-    <Position X="20.25" Y="6.25" Width="1.5" />
+    <Position X="20.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\InvalidWeaponReloadRateException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Exceptions.InvalidWeaponStatException" Collapsed="true">
-    <Position X="18" Y="4.75" Width="1.5" />
+    <Position X="18" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\InvalidWeaponStatException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Managers.StateManager" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="16" Y="0.5" Width="1.5" />
+    <Position X="24.25" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAgAAAAAAIAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Managers\StateManager.cs</FileName>
@@ -87,7 +87,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="BadSanta.Objects.GameObject" Collapsed="true">
-    <Position X="3.75" Y="0.5" Width="1.5" />
+    <Position X="5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Objects\GameObject.cs</FileName>
@@ -130,7 +130,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Objects.Items.Item" Collapsed="true">
-    <Position X="3.75" Y="1.75" Width="1.5" />
+    <Position X="4" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAEAAAA=</HashCode>
       <FileName>Objects\Items\Item.cs</FileName>
@@ -147,34 +147,48 @@
   <Class Name="BadSanta.Objects.Items.Weapons.Firearm" Collapsed="true">
     <Position X="7.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAGAAAAAAAAAAAAAAAAQAQAAAAEAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAACAAAAAAAAAAAAAAAAABAAAAAQAAA=</HashCode>
       <FileName>Objects\Items\Weapons\Firearm.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="BadSanta.Objects.Items.Weapons.Firearms.Pistol" Collapsed="true">
     <Position X="7.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQAAIAAIAAAAAAAIAAAACAAAAAAAAAIQAAAAAAAA=</HashCode>
+      <HashCode>AAAAQAAIAAIAAAAAAAIAAAAAAAAAAAAAAJAAAAAAAAA=</HashCode>
       <FileName>Objects\Items\Weapons\Firearms\Pistol.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BadSanta.States.GameState" Collapsed="true">
-    <Position X="10.5" Y="6.25" Width="1.5" />
+  <Class Name="BadSanta.Objects.Projectiles.Bullet" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAwAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAQAAAAIAAAAI=</HashCode>
+      <FileName>Objects\Projectiles\Bullet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BadSanta.Objects.Projectiles.PistolBullet" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Objects\Projectiles\PistolBullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BadSanta.States.GameState" Collapsed="true">
+    <Position X="23" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAwAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>States\GameState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.States.MenuState" Collapsed="true">
-    <Position X="13" Y="6.25" Width="1.5" />
+    <Position X="25.25" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAQAAAAAwAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>States\MenuState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.States.State" Collapsed="true">
-    <Position X="11.75" Y="4.75" Width="1.5" />
+    <Position X="24.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>States\State.cs</FileName>
@@ -182,42 +196,42 @@
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="BadSanta.Interfaces.IAttack" Collapsed="true">
-    <Position X="23.5" Y="4.5" Width="1.5" />
+    <Position X="28" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IAttack.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BadSanta.Interfaces.IContainingContent" Collapsed="true">
-    <Position X="23.5" Y="6" Width="1.5" />
+    <Position X="28" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IContainingContent.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BadSanta.Interfaces.IDestroyable" Collapsed="true">
-    <Position X="23.5" Y="2.25" Width="1.5" />
+    <Position X="28" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IDestroyable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BadSanta.Interfaces.IMoveable" Collapsed="true">
-    <Position X="23.5" Y="3.75" Width="1.5" />
+    <Position X="28" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IMoveable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BadSanta.Interfaces.IProjectile" Collapsed="true">
-    <Position X="23.5" Y="5.25" Width="1.5" />
+    <Position X="28" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAEAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAI=</HashCode>
       <FileName>Interfaces\IProjectile.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="BadSanta.Interfaces.IWeapon" Collapsed="true">
-    <Position X="23.5" Y="3" Width="1.5" />
+    <Position X="28" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACgAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IWeapon.cs</FileName>

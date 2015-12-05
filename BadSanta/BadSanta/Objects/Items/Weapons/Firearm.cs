@@ -9,28 +9,28 @@ namespace BadSanta.Objects.Items.Weapons
     public abstract class Firearm : Weapon, IProjectile
     {
 
-        private float velocity;
+        private float projectileVelocity;
         private Texture2D projectileTexture;
         private int fireRate;
 
-        protected Firearm(int fireRate, int reloadRate, float bonusDamage, int range, float velocity, string projectileTexturePath, string weaponTexture) 
+        protected Firearm(int fireRate, int reloadRate, float bonusDamage, int range, float projectileVelocity, string projectileTexturePath, string weaponTexture) 
             : base(reloadRate, bonusDamage, range, weaponTexture)
         {
             this.ProjectileTexture = this.Content.Load<Texture2D>(projectileTexturePath);
-            this.Velocity = velocity;
+            this.ProjectileVelocity = projectileVelocity;
             this.FireRate = fireRate;
         }
 
-        public float Velocity
+        public float ProjectileVelocity
         {
-            get { return this.velocity; }
+            get { return this.projectileVelocity; }
             private set
             {
                 if (value <= 0)
                 {
                     throw new InvalidProjectileVelocityException("Projectile Velocity cannot be zero or negative");
                 }
-                this.velocity = value;
+                this.projectileVelocity = value;
             }
         }
 

@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-
-namespace BadSanta.Objects.Items.Gifts.SmallGifts
+﻿namespace BadSanta.Objects.Items.Gifts.SmallGifts
 {
     public class Robot : SmallGift
     {

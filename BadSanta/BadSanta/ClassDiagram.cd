@@ -44,35 +44,35 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Exceptions.InvalidProjectileVelocityException" Collapsed="true">
-    <Position X="5" Y="7.5" Width="1.5" />
+    <Position X="20.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\InvalidProjectileVelocityException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Exceptions.InvalidWeaponDamageException" Collapsed="true">
-    <Position X="0.5" Y="9" Width="1.5" />
+    <Position X="15.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\InvalidWeaponDamageException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Exceptions.InvalidWeaponRangeException" Collapsed="true">
-    <Position X="2.75" Y="9" Width="1.5" />
+    <Position X="18" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\InvalidWeaponRangeException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Exceptions.InvalidWeaponReloadRateException" Collapsed="true">
-    <Position X="5" Y="9" Width="1.5" />
+    <Position X="20.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\InvalidWeaponReloadRateException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.Exceptions.InvalidWeaponStatException" Collapsed="true">
-    <Position X="2.75" Y="7.5" Width="1.5" />
+    <Position X="18" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\InvalidWeaponStatException.cs</FileName>
@@ -160,21 +160,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.States.GameState" Collapsed="true">
-    <Position X="11.25" Y="5.75" Width="1.5" />
+    <Position X="10.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAwAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>States\GameState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.States.MenuState" Collapsed="true">
-    <Position X="16" Y="5.75" Width="1.5" />
+    <Position X="13" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAQAAAAAwAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>States\MenuState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BadSanta.States.State" Collapsed="true">
-    <Position X="14" Y="4" Width="1.5" />
+    <Position X="11.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>States\State.cs</FileName>

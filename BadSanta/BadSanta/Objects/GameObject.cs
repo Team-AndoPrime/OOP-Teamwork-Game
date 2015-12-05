@@ -1,10 +1,19 @@
-﻿
-using Microsoft.Xna.Framework;
+﻿using BadSanta.Core;
+using BadSanta.Interfaces;
+using Microsoft.Xna.Framework.Content;
 
 namespace BadSanta.Objects
 {
-    abstract class GameObject
+    public abstract class GameObject : IContainingContent
     {
-        private Vector2 position;
+        private readonly ContentManager content;
+
+        protected GameObject()
+        {
+            this.content = GameEngine.ContentLoader.Content;
+        }
+
+        public ContentManager Content => this.content;
+
     }
 }

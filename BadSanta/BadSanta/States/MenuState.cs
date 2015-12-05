@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace BadSanta.States
 {
-    class MenuState : State
+    public class MenuState : State
     {
         private Texture2D menuBackground;
         private Texture2D playButton;
@@ -17,15 +17,16 @@ namespace BadSanta.States
 
         private void Initialize()
         {
-            playButton = base.Content.Load<Texture2D>("Images/Buttons/playButton");
-            menuBackground = base.Content.Load<Texture2D>("Images/Backgrounds/menuBackground");
+            
+            this.playButton = base.Content.Load<Texture2D>("Images/Buttons/playButton");
+            this.menuBackground = base.Content.Load<Texture2D>("Images/Backgrounds/menuBackground");
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(menuBackground, new Vector2(0, 0), Color.White);
+            spriteBatch.Draw(this.menuBackground, new Vector2(0, 0), Color.White);
             
-            spriteBatch.Draw(playButton, new Vector2(50, 50), Color.White);
+            spriteBatch.Draw(this.playButton, new Vector2(50, 50), Color.White);
         }
     }
 }

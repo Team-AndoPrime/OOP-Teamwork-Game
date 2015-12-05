@@ -1,10 +1,15 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using System.Collections.Generic;
+using BadSanta.Objects.Items.Gifts;
+using BadSanta.Objects.Items.Gifts.SmallGifts;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace BadSanta.States
 {
-    class GameState : State
+    public class GameState : State
     {
+        private List<Gift> gifts; 
         public GameState(ContentManager content) 
             : base(content)
         {
@@ -13,12 +18,13 @@ namespace BadSanta.States
 
         private void Initialize()
         {
-            //throw new System.NotImplementedException();
+            this.gifts = new List<Gift>();
+            this.gifts.Add(new Robot());
         }
     
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //throw new System.NotImplementedException();
+            spriteBatch.Draw(this.gifts[0].Icon, new Vector2(50, 50), Color.White);
         }
     }
 }

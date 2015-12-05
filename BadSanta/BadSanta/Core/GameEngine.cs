@@ -23,14 +23,16 @@ namespace BadSanta.Core
 
         private Matrix scaleMatrix;
 
+        public static ContentLoader ContentLoader;
+
         public GameEngine()
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            this.graphics = new GraphicsDeviceManager(this);
+            this.Content.RootDirectory = "Content";
 
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
-            graphics.ApplyChanges();
+            this.graphics.PreferredBackBufferWidth = 1280;
+            this.graphics.PreferredBackBufferHeight = 720;
+            this.graphics.ApplyChanges();
             
         }
 
@@ -43,7 +45,7 @@ namespace BadSanta.Core
         protected override void Initialize()
         {
             this.stateManager = new StateManager(this.Content);
-
+            ContentLoader = new ContentLoader(this.Content);
             this.inputHandler = new InputHandler(this.graphics);
             
             this.IsMouseVisible = true;
@@ -58,7 +60,7 @@ namespace BadSanta.Core
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
 
         }
 
@@ -79,17 +81,17 @@ namespace BadSanta.Core
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            this.scale = (float)graphics.GraphicsDevice.Viewport.Width / MaxWidth;
+            this.scale = (float) this.graphics.GraphicsDevice.Viewport.Width / MaxWidth;
 
-            this.scaleMatrix = Matrix.CreateScale(scale, scale, 1f);
+            this.scaleMatrix = Matrix.CreateScale(this.scale, this.scale, 1f);
 
-            inputHandler.CheckForKeyboardInput(this.stateManager);
+            this.inputHandler.CheckForKeyboardInput(this.stateManager);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
-
+            
             if (this.stateManager.CurrentState.GetType().Name == "GameState")
             {
                 this.IsMouseVisible = false;
@@ -97,7 +99,7 @@ namespace BadSanta.Core
             else
             {
                 this.IsMouseVisible = true;
-                inputHandler.CheckForMouseInput(this.stateManager);
+                this.inputHandler.CheckForMouseInput(this.stateManager);
             }
 
             base.Update(gameTime);
@@ -109,13 +111,13 @@ namespace BadSanta.Core
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            this.GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, scaleMatrix);
+            this.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, this.scaleMatrix);
 
-            stateManager.CurrentState.Draw(spriteBatch);
+            this.stateManager.CurrentState.Draw(this.spriteBatch);
 
-            spriteBatch.End();
+            this.spriteBatch.End();
 
             base.Draw(gameTime);
         }

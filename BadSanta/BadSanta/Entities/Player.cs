@@ -2,7 +2,7 @@
 
 namespace BadSanta.Entities
 {
-    class Player
+    public class Player
     {
     }
 }

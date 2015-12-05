@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace BadSanta.States
 {
-    abstract class State : IContent
+    public abstract class State : IContainingContent
     {
         private readonly ContentManager content;
 

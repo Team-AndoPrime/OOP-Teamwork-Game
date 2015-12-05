@@ -2,7 +2,7 @@
 
 namespace BadSanta.Interfaces
 {
-    public interface IContent
+    public interface IContainingContent
     {
          ContentManager Content { get; }
     }

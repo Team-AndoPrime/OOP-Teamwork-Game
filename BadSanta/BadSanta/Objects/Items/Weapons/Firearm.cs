@@ -8,8 +8,8 @@ namespace BadSanta.Objects.Items.Weapons
         private int fireRate;
         private Bullet bullet;
 
-        protected Firearm(Bullet bullet, int fireRate, int reloadRate, float bonusDamage, int range, string weaponTexture) 
-            : base(reloadRate, bonusDamage, range, weaponTexture)
+        protected Firearm(Bullet bullet, int fireRate, int reloadRate, float bonusDamage, int range, string weaponTexture, int damageEnemy) 
+            : base(reloadRate, bonusDamage, range, weaponTexture, damageEnemy)
         {
             this.bullet = bullet;
             this.FireRate = fireRate;

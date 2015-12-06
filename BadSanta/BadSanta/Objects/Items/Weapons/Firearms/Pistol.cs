@@ -10,9 +10,10 @@ namespace BadSanta.Objects.Items.Weapons.Firearms
         private const float bonusDamage = 5f;
         private const int range = 5;
         private const string weaponTexture = "Images/Weapons/pistol";
+        private const int damageEnemy = 10;
 
         public Pistol() 
-            : base(bullet, fireRate, reloadRate, bonusDamage, range, weaponTexture)
+            : base(bullet, fireRate, reloadRate, bonusDamage, range, weaponTexture,damageEnemy)
         {
             
         }

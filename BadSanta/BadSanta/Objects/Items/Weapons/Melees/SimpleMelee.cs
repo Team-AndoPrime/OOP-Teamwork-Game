@@ -1,6 +1,6 @@
 ﻿namespace BadSanta.Objects.Items.Weapons.Melees
 {
-    class SimpleMelee : Melee
+    public class SimpleMelee : Melee
     {
         private const int reloadRate = 5;
         private const float bonusDamage = 3f;

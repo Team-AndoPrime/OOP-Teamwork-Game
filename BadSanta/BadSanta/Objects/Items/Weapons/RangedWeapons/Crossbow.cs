@@ -1,8 +1,8 @@
 ﻿using BadSanta.Objects.Projectiles;
 
-namespace BadSanta.Objects.Items.Weapons.Firearms
+namespace BadSanta.Objects.Items.Weapons
 {
-    class Crossbow : Firearm
+    public class Crossbow : RangedWeapon
     {
         private static readonly Arrow arrow = new Arrow();
         private const int reloadRate = 0;

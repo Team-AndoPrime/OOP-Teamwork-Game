@@ -2,11 +2,11 @@
 
 namespace BadSanta.Objects.Items.Weapons
 {
-    class Melee : Weapon
+    public class Melee : Weapon
     {
         private int attackRate;
 
-        public Melee(int reloadRate, float bonusDamage, int range, string texturePath, int damageEnemy,int attackRate) 
+        public Melee(int reloadRate, float bonusDamage, int range, string texturePath, int damageEnemy, int attackRate) 
             : base(reloadRate, bonusDamage, range, texturePath, damageEnemy)
         {
             this.AttackRate = attackRate;

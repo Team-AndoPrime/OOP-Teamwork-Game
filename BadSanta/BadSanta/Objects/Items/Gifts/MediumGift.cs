@@ -3,10 +3,10 @@ namespace BadSanta.Objects.Items.Gifts
 {
     public abstract class MediumGift : Gift
     {
-        private const decimal GiftPrice = 10m;
+        private const decimal MediumGiftPrice = 10m;
 
         protected MediumGift(string iconPath) 
-            : base(iconPath, GiftPrice)
+            : base(iconPath, MediumGiftPrice)
         {
 
         }

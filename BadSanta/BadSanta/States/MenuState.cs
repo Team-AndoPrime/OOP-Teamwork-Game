@@ -9,8 +9,7 @@ namespace BadSanta.States
         private Texture2D menuBackground;
         private Texture2D playButton;
 
-        public MenuState(ContentManager content) 
-            : base(content)
+        public MenuState()
         {
             Initialize();
         }

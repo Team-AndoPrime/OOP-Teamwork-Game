@@ -1,7 +1,9 @@
 ﻿using BadSanta.Managers;
+using BadSanta.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace BadSanta.Core
 {
@@ -33,7 +35,9 @@ namespace BadSanta.Core
             this.graphics.PreferredBackBufferWidth = 1280;
             this.graphics.PreferredBackBufferHeight = 720;
             this.graphics.ApplyChanges();
-            
+
+            this.IsMouseVisible = true;
+
         }
 
         /// <summary>
@@ -44,15 +48,13 @@ namespace BadSanta.Core
         /// </summary>
         protected override void Initialize()
         {
-            this.stateManager = new StateManager(this.Content);
-
             ContentLoader = new ContentLoader(this.Content);
 
+            this.stateManager = new StateManager();
+            
             this.inputHandler = new InputHandler(this.graphics);
             
-            this.IsMouseVisible = true;
-
-            base.Initialize();
+                        base.Initialize();
         }
 
         /// <summary>

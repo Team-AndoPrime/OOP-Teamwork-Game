@@ -1,6 +1,6 @@
 ﻿namespace BadSanta.Objects.Projectiles
 {
-    class Arrow : Bullet
+    public class Arrow : Bullet
     {
         private const string projectileTexturePath = "";
         private const float projectileVelocity = 4f;

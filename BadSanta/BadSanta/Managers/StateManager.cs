@@ -1,4 +1,5 @@
-﻿using BadSanta.Interfaces;
+﻿using BadSanta.Core;
+using BadSanta.Interfaces;
 using BadSanta.States;
 using Microsoft.Xna.Framework.Content;
 
@@ -9,10 +10,10 @@ namespace BadSanta.Managers
         private State currentState;
         private ContentManager content;
 
-        public StateManager(ContentManager content)
+        public StateManager()
         {
-            this.content = content;
-            this.currentState = new MenuState(this.Content);
+            this.content = GameEngine.ContentLoader.Content;
+            this.currentState = new MenuState();
         }
 
         public ContentManager Content => this.content;

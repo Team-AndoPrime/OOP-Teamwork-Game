@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace BadSanta.Objects.Items.Weapons.Melees
+﻿namespace BadSanta.Objects.Items.Weapons.Melees
 {
-    class HornsAttack : Melee
+    public class HornsAttack : Melee
     {
         private const int reloadRate = 0;
         private const float bonusDamage = 7f;

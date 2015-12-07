@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using BadSanta.Objects.Items.Gifts;
 using BadSanta.Objects.Items.Gifts.SmallGifts;
-using BadSanta.Objects.Items.Weapons.Firearms;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace BadSanta.States
@@ -11,18 +9,18 @@ namespace BadSanta.States
     public class GameState : State
     {
         private List<Gift> gifts;
-        private Pistol pistol;
 
-        public GameState(ContentManager content) 
-            : base(content)
+        public GameState()
         {
             Initialize();
         }
 
         private void Initialize()
         {
-            this.gifts = new List<Gift>();
-            this.gifts.Add(new Robot());
+            this.gifts = new List<Gift>
+            {
+                new Robot()
+            };
         }
     
         public override void Draw(SpriteBatch spriteBatch)

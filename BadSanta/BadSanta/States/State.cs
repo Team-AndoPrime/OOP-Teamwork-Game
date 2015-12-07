@@ -1,4 +1,5 @@
-﻿using BadSanta.Interfaces;
+﻿using BadSanta.Core;
+using BadSanta.Interfaces;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -8,9 +9,9 @@ namespace BadSanta.States
     {
         private readonly ContentManager content;
 
-        protected State(ContentManager content)
+        protected State()
         {
-            this.content = content;
+            this.content = GameEngine.ContentLoader.Content;
         }
 
         public ContentManager Content => this.content;

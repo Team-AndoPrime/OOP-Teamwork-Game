@@ -1,8 +1,10 @@
 ﻿using System.Net.Mime;
+using System.Runtime.Remoting.Messaging;
 using BadSanta.Managers;
 using BadSanta.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace BadSanta.Core
 {
@@ -20,15 +22,15 @@ namespace BadSanta.Core
         {
             if (Keyboard.GetState().IsKeyDown(Keys.F))
             {
-                this.graphics.PreferredBackBufferWidth = 1920;
-                this.graphics.PreferredBackBufferHeight = 1080;
+                this.graphics.PreferredBackBufferWidth = 1280;
+                this.graphics.PreferredBackBufferHeight = 720;
                 this.graphics.ToggleFullScreen();
                 this.graphics.ApplyChanges();
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.P) &&
                 stateManager.CurrentState.GetType().Name == "MenuState")
             {
-                stateManager.CurrentState = new GameState(stateManager.Content);
+                stateManager.CurrentState = new GameState();
             }
         }
 

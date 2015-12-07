@@ -2,7 +2,7 @@
 
 namespace BadSanta.Objects.Items.Weapons.Firearms
 {
-    class Pistol : Firearm
+    public class Pistol : RangedWeapon
     {
         private static readonly PistolBullet bullet = new PistolBullet();
         private const int reloadRate = 10;

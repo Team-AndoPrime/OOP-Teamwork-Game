@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using BadSanta.Objects.Projectiles;
+﻿using BadSanta.Objects.Projectiles;
 
 namespace BadSanta.Objects.Items.Weapons.Firearms
 {
-    class MachineGun : Firearm
+    public class MachineGun : RangedWeapon
     {
-        private static readonly GunBullet gunBullet = new GunBullet();
+        private static readonly RifleBullet gunBullet = new RifleBullet();
         private const int reloadRate = 0;
         private const int fireRate = 1;
         private const float bonusDamage = 5f;

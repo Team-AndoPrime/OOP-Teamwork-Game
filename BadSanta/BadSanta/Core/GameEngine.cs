@@ -3,7 +3,6 @@ using BadSanta.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
 
 namespace BadSanta.Core
 {
@@ -15,11 +14,8 @@ namespace BadSanta.Core
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private InputHandler inputHandler;
+        public static InputHandler inputHandler;
         private StateManager stateManager;
-
-        public const int MaxWidth = 1920;
-        public const int MaxHeight = 1080;
 
         private float scale;
 
@@ -32,8 +28,8 @@ namespace BadSanta.Core
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
 
-            this.graphics.PreferredBackBufferWidth = 1280;
-            this.graphics.PreferredBackBufferHeight = 720;
+            this.graphics.PreferredBackBufferWidth = 1920;
+            this.graphics.PreferredBackBufferHeight = 1080;
             this.graphics.ApplyChanges();
 
             this.IsMouseVisible = true;
@@ -52,9 +48,9 @@ namespace BadSanta.Core
 
             this.stateManager = new StateManager();
             
-            this.inputHandler = new InputHandler(this.graphics);
+            inputHandler = new InputHandler(this.graphics);
             
-                        base.Initialize();
+            base.Initialize();
         }
 
         /// <summary>
@@ -85,27 +81,28 @@ namespace BadSanta.Core
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            this.scale = (float) this.graphics.GraphicsDevice.Viewport.Width / MaxWidth;
+            this.scale = (float) this.graphics.GraphicsDevice.Viewport.Width / Constants.MaxWidth;
 
             this.scaleMatrix = Matrix.CreateScale(this.scale, this.scale, 1f);
 
-            this.inputHandler.CheckForKeyboardInput(this.stateManager);
+            inputHandler.CheckForKeyboardInput(this.stateManager);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
             
-            if (this.stateManager.CurrentState.GetType().Name == "GameState")
+            if (this.stateManager.CurrentState is GameState)
             {
                 this.IsMouseVisible = false;
             }
             else
             {
                 this.IsMouseVisible = true;
-                this.inputHandler.CheckForMouseInput(this.stateManager);
+                inputHandler.CheckForMouseInput(this.stateManager);
             }
 
+            this.stateManager.CurrentState.Update(gameTime);
             base.Update(gameTime);
         }
 

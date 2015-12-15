@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace BadSanta.Objects.Items.Gifts.LargeGifts
+﻿namespace BadSanta.Objects.Items.Gifts.MediumGifts
 {
     public class Drone : MediumGift
     {

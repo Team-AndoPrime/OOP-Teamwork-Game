@@ -1,10 +1,10 @@
 ﻿namespace BadSanta.Objects.Items.Gifts.LargeGifts
 {
-    public class Car : LargeGift
+    public class RealCar : LargeGift
     {
         private const string iconPath = "Images/GiftImages/Car";
 
-        public Car()
+        public RealCar()
             : base(iconPath)
         {
         }

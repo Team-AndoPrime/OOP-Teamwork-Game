@@ -10,19 +10,18 @@ namespace BadSanta.Objects.Items
         private int range;
         private int damageEnemy;
 
-        protected Weapon(int reloadRate, float bonusDamage, int range, string texturePath, int damageEnemy)
+        protected Weapon(int reloadRate, float bonusDamage, string texturePath, int damageEnemy)
             : base(texturePath)
         {
             this.ReloadRate = reloadRate;
             this.BonusDamage = bonusDamage;
-            this.Range = range;
             this.DamageEnemy = damageEnemy;
         }
 
         public int ReloadRate
         {
             get { return this.reloadRate; }
-            private set
+            protected set
             {
                 if (value < 0)
                 {
@@ -35,7 +34,7 @@ namespace BadSanta.Objects.Items
         public float BonusDamage
         {
             get { return this.BonusDamage; }
-            private set
+            protected set
             {
                 if (value < 0)
                 {
@@ -48,7 +47,7 @@ namespace BadSanta.Objects.Items
         public int Range
         {
             get { return this.range; }
-            private set
+            protected set
             {
                 if (value < 0)
                 {
@@ -61,7 +60,7 @@ namespace BadSanta.Objects.Items
         public int DamageEnemy
         {
             get { return this.damageEnemy; }
-            private set
+            protected set
             {
                 if (value < 0)
                 {

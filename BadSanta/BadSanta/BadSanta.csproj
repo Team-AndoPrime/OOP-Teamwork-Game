@@ -39,6 +39,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Characters\Character.cs" />
+    <Compile Include="Characters\PlayerControlled\Santa.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="ContentLoader.cs" />
     <Compile Include="Core\GameEngine.cs" />
     <Compile Include="Core\InputHandler.cs" />
@@ -57,12 +59,14 @@
     <Compile Include="Launcher.cs" />
     <Compile Include="Managers\StateManager.cs" />
     <Compile Include="Objects\GameObject.cs" />
+    <Compile Include="Objects\Items\Consumables\HealthPotion.cs" />
     <Compile Include="Objects\Items\Gifts\Gift.cs" />
     <Compile Include="Objects\Items\Gifts\LargeGift.cs" />
     <Compile Include="Objects\Items\Gifts\LargeGifts\Car.cs" />
-    <Compile Include="Objects\Items\Gifts\MediumGifts\Drone.cs" />
     <Compile Include="Objects\Items\Gifts\LargeGifts\Plane.cs" />
     <Compile Include="Objects\Items\Gifts\MediumGift.cs" />
+    <Compile Include="Objects\Items\Gifts\MediumGifts\Drone.cs" />
+    <Compile Include="Objects\Items\Gifts\SmallGifts\Doll.cs" />
     <Compile Include="Objects\Items\Gifts\SmallGifts\Robot.cs" />
     <Compile Include="Objects\Items\Item.cs" />
     <Compile Include="Objects\Items\Gifts\SmallGift.cs" />

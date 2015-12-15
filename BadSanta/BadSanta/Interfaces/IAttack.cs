@@ -4,7 +4,7 @@ namespace BadSanta.Interfaces
 {
     public interface IAttack
     {
-        float Damage { get; set; }
+        float Damage { get;}
 
         void Attack(Character enemy);
     }

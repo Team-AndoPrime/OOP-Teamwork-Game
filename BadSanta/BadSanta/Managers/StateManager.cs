@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace BadSanta.Managers
 {
-    class StateManager : IContainingContent
+    public class StateManager : IContainingContent
     {
         private State currentState;
         private ContentManager content;

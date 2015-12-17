@@ -4,8 +4,7 @@
     {
         private decimal giftPrice;
 
-        protected Gift(string iconPath, decimal giftPrice)
-            : base(iconPath)
+        protected Gift(decimal giftPrice)
         {
             this.GiftPrice = giftPrice;
         }

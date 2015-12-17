@@ -4,7 +4,13 @@ namespace BadSanta.Interfaces
 {
     public interface IProjectile
     {
-        float ProjectileVelocity { get; }
-        Texture2D ProjectileTexture { get; } 
+        int ProjectileVelocity { get; }
+        Texture2D ProjectileTexture { get; }
+
+        int PositionX { get; set; }
+        int PositionY { get; set; }
+
+        void Draw(SpriteBatch spriteBatch);
+
     }
 }

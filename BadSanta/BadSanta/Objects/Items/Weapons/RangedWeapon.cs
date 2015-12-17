@@ -1,37 +1,22 @@
-﻿using BadSanta.Exceptions;
+﻿using System;
 using BadSanta.Objects.Projectiles;
 
 namespace BadSanta.Objects.Items.Weapons
 {
     public abstract class RangedWeapon : Weapon
     {
-        private int fireRate;
         private Bullet bullet;
 
-        protected RangedWeapon(Bullet bullet, int fireRate, int reloadRate, float bonusDamage, int range, string weaponTexture, int damageEnemy) 
-            : base(reloadRate, bonusDamage, range, weaponTexture, damageEnemy)
+        protected RangedWeapon(int bonusDamage, string weaponTexture) 
+            : base(bonusDamage)
         {
-            this.bullet = bullet;
-            this.FireRate = fireRate;
+            this.Range = Constants.RangedWeaponRange;
         }
-
-        public int FireRate
-        {
-            get { return this.fireRate; }
-            private set
-            {
-                if (value <= 0)
-                {
-                    throw new InvalidWeaponStatException("Fire Rate cannot be zero or negative");
-                }
-                this.fireRate = value;
-            }
-        }
-
+        
         public Bullet Bullet
         {
             get { return this.bullet; }
-            private set { this.bullet = value; }
+            protected set { this.bullet = value; }
             
         }
     }

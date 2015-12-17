@@ -1,11 +1,11 @@
-﻿namespace BadSanta.Objects.Items.Gifts
+﻿using BadSanta.Enumerations;
+
+namespace BadSanta.Objects.Items.Gifts
 {
     public abstract class SmallGift : Gift
     {
-        private const decimal SmallGiftPrice = 5m;
-
-        protected SmallGift(string iconPath) 
-            : base(iconPath, SmallGiftPrice)
+        protected SmallGift() 
+            : base((decimal)GiftPrices.SmallGift)
         {
 
         }

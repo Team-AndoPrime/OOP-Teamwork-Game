@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace BadSanta.Objects.Items.Gifts.SmallGifts
 {
-    public class Robot : SmallGift
+    public class Doll : SmallGift
     {
-        public Robot(ContentManager content)
+        public Doll(ContentManager content)
         {
-            this.Icon = content.Load<Texture2D>(Constants.RobotIconPath);
+            this.Icon = content.Load<Texture2D>(Constants.DollIconPath);
         }
     }
 }

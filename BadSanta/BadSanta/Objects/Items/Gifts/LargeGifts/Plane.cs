@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace BadSanta.Objects.Items.Gifts.LargeGifts
 {
-    public class RealCar : LargeGift
+    public class RealPlane : LargeGift
     {
-        public RealCar(ContentManager content)
+        public RealPlane(ContentManager content)
         {
-            this.Icon = content.Load<Texture2D>(Constants.CarIconPath);
+            this.Icon = content.Load<Texture2D>(Constants.PlaneIconPath);
         }
     }
 }

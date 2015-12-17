@@ -5,18 +5,22 @@ using Microsoft.Xna.Framework.Content;
 
 namespace BadSanta.Managers
 {
-    class StateManager : IContainingContent
+    public class StateManager
     {
         private State currentState;
         private ContentManager content;
 
-        public StateManager()
+        public StateManager(ContentManager content)
         {
-            this.content = GameEngine.ContentLoader.Content;
-            this.currentState = new MenuState();
+            this.Content = content;
+            this.currentState = new MenuState(this.Content);
         }
 
-        public ContentManager Content => this.content;
+        public ContentManager Content
+        {
+            get { return this.content; }
+            set { this.content = value; }
+        }
 
         public State CurrentState
         {

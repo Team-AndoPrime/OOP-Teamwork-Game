@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace BadSanta.Objects.Items
 {
@@ -7,15 +6,14 @@ namespace BadSanta.Objects.Items
     {
         private Texture2D texture;
 
-        protected Item(string texturePath)
+        protected Item()
         {
-            this.texture = this.Content.Load<Texture2D>(texturePath);
         }
 
         public Texture2D Icon
         {
             get { return this.texture; }
-            private set { this.texture = value; }
+            protected set { this.texture = value; }
         }
     }
 }

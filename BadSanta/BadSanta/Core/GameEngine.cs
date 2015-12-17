@@ -3,7 +3,6 @@ using BadSanta.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
 
 namespace BadSanta.Core
 {
@@ -12,28 +11,23 @@ namespace BadSanta.Core
     /// </summary>
     public class GameEngine : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
 
         private InputHandler inputHandler;
         private StateManager stateManager;
 
-        public const int MaxWidth = 1920;
-        public const int MaxHeight = 1080;
-
         private float scale;
 
         private Matrix scaleMatrix;
-
-        public static ContentLoader ContentLoader;
 
         public GameEngine()
         {
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
 
-            this.graphics.PreferredBackBufferWidth = 1280;
-            this.graphics.PreferredBackBufferHeight = 720;
+            this.graphics.PreferredBackBufferWidth = 1920;
+            this.graphics.PreferredBackBufferHeight = 1080;
             this.graphics.ApplyChanges();
 
             this.IsMouseVisible = true;
@@ -48,13 +42,11 @@ namespace BadSanta.Core
         /// </summary>
         protected override void Initialize()
         {
-            ContentLoader = new ContentLoader(this.Content);
 
-            this.stateManager = new StateManager();
-            
+            this.stateManager = new StateManager(this.Content);
             this.inputHandler = new InputHandler(this.graphics);
             
-                        base.Initialize();
+            base.Initialize();
         }
 
         /// <summary>
@@ -65,6 +57,7 @@ namespace BadSanta.Core
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
+            this.stateManager.Content = this.Content;
 
         }
 
@@ -85,7 +78,7 @@ namespace BadSanta.Core
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            this.scale = (float) this.graphics.GraphicsDevice.Viewport.Width / MaxWidth;
+            this.scale = (float) this.graphics.GraphicsDevice.Viewport.Width / Constants.MaxWidth;
 
             this.scaleMatrix = Matrix.CreateScale(this.scale, this.scale, 1f);
 
@@ -96,7 +89,7 @@ namespace BadSanta.Core
                 Exit();
             }
             
-            if (this.stateManager.CurrentState.GetType().Name == "GameState")
+            if (this.stateManager.CurrentState is GameState)
             {
                 this.IsMouseVisible = false;
             }
@@ -106,6 +99,7 @@ namespace BadSanta.Core
                 this.inputHandler.CheckForMouseInput(this.stateManager);
             }
 
+            this.stateManager.CurrentState.Update(gameTime, this.inputHandler);
             base.Update(gameTime);
         }
 

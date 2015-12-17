@@ -7,7 +7,6 @@ namespace BadSanta.Objects.Items
     {
         private int bonusDamage;
         private int range;
-
         protected Weapon(int bonusDamage)
         {
             this.BonusDamage = bonusDamage;
@@ -16,6 +15,7 @@ namespace BadSanta.Objects.Items
         public int BonusDamage
         {
             get { return this.bonusDamage; }
+
             protected set
             {
                 if (value < 0)

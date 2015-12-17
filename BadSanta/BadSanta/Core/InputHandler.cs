@@ -47,6 +47,7 @@ namespace BadSanta.Core
             {
                 player.IsMovingLeft = true;
             }
+
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 player.IsMovingRight = true;
@@ -63,6 +64,7 @@ namespace BadSanta.Core
                 newMouseState.LeftButton == ButtonState.Released)
             {
                 stateManager.CurrentState = new GameState(stateManager.Content);
+
             }
             this.oldMouseState = newMouseState;
 

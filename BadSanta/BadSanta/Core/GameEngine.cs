@@ -14,7 +14,7 @@ namespace BadSanta.Core
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        private InputHandler inputHandler;
+        public static InputHandler inputHandler;
         private StateManager stateManager;
 
         private float scale;
@@ -42,10 +42,9 @@ namespace BadSanta.Core
         /// </summary>
         protected override void Initialize()
         {
-
             this.stateManager = new StateManager(this.Content);
             this.inputHandler = new InputHandler(this.graphics);
-            
+
             base.Initialize();
         }
 
@@ -82,7 +81,7 @@ namespace BadSanta.Core
 
             this.scaleMatrix = Matrix.CreateScale(this.scale, this.scale, 1f);
 
-            this.inputHandler.CheckForKeyboardInput(this.stateManager);
+            inputHandler.CheckForKeyboardInput(this.stateManager);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
@@ -96,7 +95,7 @@ namespace BadSanta.Core
             else
             {
                 this.IsMouseVisible = true;
-                this.inputHandler.CheckForMouseInput(this.stateManager);
+                inputHandler.CheckForMouseInput(this.stateManager);
             }
 
             this.stateManager.CurrentState.Update(gameTime, this.inputHandler);

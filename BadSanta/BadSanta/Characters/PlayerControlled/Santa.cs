@@ -17,7 +17,6 @@ namespace BadSanta.Characters.PlayerControlled
         private List<RangedWeapon> weaponList;
         private List<int> ammoList;
 
-
         public Santa(int health, float damage, string name, ContentManager content) 
             : base(health, damage, name)
         {

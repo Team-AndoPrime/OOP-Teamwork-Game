@@ -6,6 +6,7 @@ namespace BadSanta.Objects.Items.Weapons
     public abstract class RangedWeapon : Weapon
     {
         private Bullet bullet;
+        private int clipSize;
 
         protected RangedWeapon(int bonusDamage, string weaponTexture) 
             : base(bonusDamage)

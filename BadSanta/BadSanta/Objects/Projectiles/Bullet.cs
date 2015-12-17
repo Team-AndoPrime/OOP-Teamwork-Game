@@ -9,8 +9,8 @@ namespace BadSanta.Objects.Projectiles
     {
         private Texture2D projectileTexture;
         private int projectileVelocity;
-
         protected Bullet(int projectileVelocity)
+
         {
             this.ProjectileVelocity = projectileVelocity;
         }

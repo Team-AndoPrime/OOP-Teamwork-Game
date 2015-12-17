@@ -2,6 +2,7 @@
 using BadSanta.Core;
 using BadSanta.Objects.Items.Gifts;
 using BadSanta.Objects.Items.Gifts.LargeGifts;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,6 +27,7 @@ namespace BadSanta.States
             {
                 for (int j = 0; j < 30; j++)
                 {
+
                     this.gifts[i, j] = new RealPlane(this.Content);
                 }
             }
@@ -35,11 +37,13 @@ namespace BadSanta.States
         public override void Update(GameTime gameTime, InputHandler inputHandler)
         {
             inputHandler.PlayerMovement(this.player);
-            this.player.Move();
+	    this.player.Move();
         }
+
     
         public override void Draw(SpriteBatch spriteBatch)
         {
+
             for (int i = 0; i < 30; i++)
             {
                 for (int j = 0; j < 30; j++)
@@ -49,7 +53,6 @@ namespace BadSanta.States
                 }
             }
             spriteBatch.Draw(this.player.Image, new Vector2(this.player.PositionX, this.player.PositionY), Color.White);
-
             
         }
     }

@@ -5,6 +5,7 @@ using BadSanta.Objects;
 namespace BadSanta.Characters
 {
     public abstract class Character : GameObject, IAttack, IDestroyable
+
     {
         private int health;
         private float damage;

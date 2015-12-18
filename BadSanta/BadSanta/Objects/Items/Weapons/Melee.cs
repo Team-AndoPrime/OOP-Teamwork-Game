@@ -2,7 +2,7 @@
 
 namespace BadSanta.Objects.Items.Weapons
 {
-    public class Melee : Weapon
+    public abstract class Melee : Weapon
     {
         public Melee(int bonusDamage) 
             : base(bonusDamage)

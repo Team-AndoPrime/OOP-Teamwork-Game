@@ -7,10 +7,10 @@ namespace BadSanta.Managers
         private Level level;
         private int currentLevelNumber;
 
-        public LevelManager(int level)
+        public LevelManager()
         {
-            this.currentLevelNumber = level;
-            CreateLevel();
+            this.currentLevelNumber = 0;
+            this.CreateLevel();
             
         }
 
@@ -22,7 +22,7 @@ namespace BadSanta.Managers
         public void NextLevel()
         {
             this.currentLevelNumber++;
-            CreateLevel();
+            this.CreateLevel();
         }
 
         public Level CurrentLevel

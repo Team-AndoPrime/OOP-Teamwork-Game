@@ -1,4 +1,5 @@
 ﻿using BadSanta.Managers;
+using BadSanta.Objects.Tiles;
 using BadSanta.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,7 +15,7 @@ namespace BadSanta.Core
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        public static InputHandler inputHandler;
+        private InputHandler inputHandler;
         private StateManager stateManager;
 
         private float scale;
@@ -57,6 +58,7 @@ namespace BadSanta.Core
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
             this.stateManager.Content = this.Content;
+            Tile.Content = this.Content;
 
         }
 
@@ -81,11 +83,11 @@ namespace BadSanta.Core
 
             this.scaleMatrix = Matrix.CreateScale(this.scale, this.scale, 1f);
 
-            inputHandler.CheckForKeyboardInput(this.stateManager);
+            this.inputHandler.CheckForKeyboardInput(this.stateManager);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                Exit();
+                this.Exit();
             }
             
             if (this.stateManager.CurrentState is GameState)
@@ -95,7 +97,7 @@ namespace BadSanta.Core
             else
             {
                 this.IsMouseVisible = true;
-                inputHandler.CheckForMouseInput(this.stateManager);
+                this.inputHandler.CheckForMouseInput(this.stateManager);
             }
 
             this.stateManager.CurrentState.Update(gameTime, this.inputHandler);
@@ -108,7 +110,7 @@ namespace BadSanta.Core
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            this.GraphicsDevice.Clear(Color.CornflowerBlue);
+            this.GraphicsDevice.Clear(Color.White);
 
             this.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, this.scaleMatrix);
 

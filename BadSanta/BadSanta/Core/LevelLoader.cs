@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 
 namespace BadSanta.Core
 {
@@ -8,7 +10,7 @@ namespace BadSanta.Core
         {
             int[,] currentLevel;
 
-            using (StreamReader streamReader = new StreamReader(new FileStream("Levels/level" + level + ".txt", FileMode.Open)))
+            using (StreamReader streamReader = new StreamReader(new FileStream("Content/Levels/Level" + level + ".txt", FileMode.Open)))
             {
                 int levelSize;
                 try
@@ -21,6 +23,20 @@ namespace BadSanta.Core
                 }
                 currentLevel = new int[levelSize, levelSize];
 
+                string[][] stringLevelMAtrix =
+                    streamReader.ReadToEnd()
+                        .Split(new char[] {'\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(row => row.Split(new char[] {' '},StringSplitOptions.RemoveEmptyEntries))
+                        .ToArray();
+            
+
+                for (int i = 0; i < levelSize; i++)
+                {
+                    for (int j = 0; j < levelSize; j++)
+                    {
+                        currentLevel[i, j] = int.Parse(stringLevelMAtrix[i][j]);
+                    }
+                }
             }
 
             return currentLevel;

@@ -8,27 +8,19 @@ namespace BadSanta.Core
 {
     public class InputHandler
     {
-        private GraphicsDeviceManager graphics;
         private MouseState oldMouseState;
-
-        public InputHandler(GraphicsDeviceManager graphics)
-        {
-            this.graphics = graphics;
-        }
 
         public void CheckForKeyboardInput(StateManager stateManager)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.F))
+            /*if (Keyboard.GetState().IsKeyDown(Keys.F))
             {
-                this.graphics.PreferredBackBufferWidth = 1280;
-                this.graphics.PreferredBackBufferHeight = 720;
                 this.graphics.ToggleFullScreen();
                 this.graphics.ApplyChanges();
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.P) &&
+            }*/
+            if (Keyboard.GetState().IsKeyDown(Keys.P) &&
                 stateManager.CurrentState is MenuState)
             {
-                stateManager.CurrentState = new GameState(stateManager.Content);
+                stateManager.CurrentState = new GameState(stateManager.Content, stateManager.Graphics);
             }
             
         }
@@ -59,13 +51,13 @@ namespace BadSanta.Core
         {
             MouseState newMouseState = Mouse.GetState();
 
-            if (newMouseState.X < 500 && 
-                oldMouseState.LeftButton == ButtonState.Pressed && 
-                newMouseState.LeftButton == ButtonState.Released)
-            {
-                stateManager.CurrentState = new GameState(stateManager.Content);
+            //if (newMouseState.X < 500 
+            //    && this.oldMouseState.LeftButton == ButtonState.Pressed 
+            //    && newMouseState.LeftButton == ButtonState.Released)
+            //{
+            //    stateManager.CurrentState = new GameState(stateManager.Content, stateManager.Graphics);
 
-            }
+            //}
             this.oldMouseState = newMouseState;
 
         }

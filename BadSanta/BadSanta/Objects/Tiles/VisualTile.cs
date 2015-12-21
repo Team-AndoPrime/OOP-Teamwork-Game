@@ -3,12 +3,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace BadSanta.Objects.Tiles
 {
-    public class CollisionTile : Tile
+    public class VisualTile : Tile
     {
-        public CollisionTile(int i, Rectangle newRectangle)
+        public VisualTile(int i, Rectangle collisionBox)
         {
             this.TileTexture = Content.Load<Texture2D>("Images/Tiles/Tile" + i);
-            this.Rectangle = newRectangle;
+            this.Rectangle = collisionBox;
         }
     }
 }

@@ -6,41 +6,40 @@ namespace BadSanta.Core
 {
     public static class LevelLoader
     {
-        public static int[, ] LoadLevel(int level)
+        public static int[,] LoadLevel(int level)
         {
-            int[,] currentLevel;
+            int[][] levelMatrix;
 
             using (StreamReader streamReader = new StreamReader(new FileStream("Content/Levels/Level" + level + ".txt", FileMode.Open)))
             {
-                int levelSize;
-                try
-                {
-                    levelSize = int.Parse(streamReader.ReadLine());
-                }
-                catch (IOException ioException)
-                {
-                    throw ioException;
-                }
-                currentLevel = new int[levelSize, levelSize];
-
-                string[][] stringLevelMAtrix =
+                levelMatrix =
                     streamReader.ReadToEnd()
                         .Split(new char[] {'\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(row => row.Split(new char[] {' '},StringSplitOptions.RemoveEmptyEntries))
+                        .Select(row => row
+                            .Split(new char[] {' '},StringSplitOptions.RemoveEmptyEntries)
+                            .Select(int.Parse)
+                            .ToArray())
                         .ToArray();
-            
+            }
 
-                for (int i = 0; i < levelSize; i++)
+            return ConvertJaggedArrayTo2D(levelMatrix);
+        }
+
+        private static int[,] ConvertJaggedArrayTo2D(int[][] source)
+        {
+            int arraySize = source.Length;
+
+            int[,] result = new int[arraySize, arraySize];
+
+            for (int i = 0; i < arraySize; i++)
+            {
+                for (int j = 0; j < arraySize; j++)
                 {
-                    for (int j = 0; j < levelSize; j++)
-                    {
-                        currentLevel[i, j] = int.Parse(stringLevelMAtrix[i][j]);
-                    }
+                    result[i, j] = source[i][j];
                 }
             }
 
-            return currentLevel;
-
+            return result;
         }
     }
 }

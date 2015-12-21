@@ -55,5 +55,8 @@
         public const string DroneIconPath = "Images/GiftImages/Drone";
         public const string DollIconPath = "Images/GiftImages/Doll";
         public const string RobotIconPath = "Images/GiftImages/Robot";
+
+        //Tiles
+        public const int TileSize = 36;
     }
 }

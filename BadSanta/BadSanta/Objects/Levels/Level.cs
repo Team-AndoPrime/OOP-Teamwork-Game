@@ -8,9 +8,7 @@ namespace BadSanta.Objects.Levels
 {
     public class Level
     {
-        private List<CollisionTile> tiles = new List<CollisionTile>();
-        private int width;
-        private int heigh;
+        private readonly List<Tile> tiles = new List<Tile>();
 
         public Level(int level)
         {
@@ -18,12 +16,7 @@ namespace BadSanta.Objects.Levels
             this.GenerateLevel(levelMatrix);
         }
 
-        public IEnumerable<CollisionTile> Tiles => this.tiles;
-
-        public int Width => this.width;
-
-        public int Heigh => this.heigh;
-
+        public IEnumerable<Tile> Tiles => this.tiles;
 
         private void GenerateLevel(int[,] levelMatrix)
         {
@@ -32,18 +25,38 @@ namespace BadSanta.Objects.Levels
                 for (int j = 0; j < levelMatrix.GetLength(1); j++)
                 {
                     int currTile = levelMatrix[j, i];
-
+                    if (currTile > 0)
+                    {
+                        this.tiles.Add(
+                        new CollisionTile(
+                            currTile,
+                            new Rectangle(
+                                i * Constants.TileSize,
+                                j * Constants.TileSize,
+                                Constants.TileSize,
+                                Constants.TileSize
+                                )));
+                    }
+                    else
+                    {
+                        this.tiles.Add(
+                            new VisualTile(
+                                currTile,
+                                new Rectangle(
+                                    i * Constants.TileSize,
+                                    j * Constants.TileSize,
+                                    Constants.TileSize,
+                                    Constants.TileSize
+                                    )));
+                    }
                     
-                        this.tiles.Add(new CollisionTile(currTile, new Rectangle(i*36,j*36,36,36)));
-                    
-                       
                 }
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (CollisionTile tile in this.Tiles)
+            foreach (Tile tile in this.Tiles)
             {
                 tile.Draw(spriteBatch);
             }

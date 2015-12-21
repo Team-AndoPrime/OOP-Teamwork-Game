@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Linq;
 using BadSanta.Characters;
+using BadSanta.Core;
+using BadSanta.Exceptions;
 using BadSanta.Interfaces;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace BadSanta.Entities
 {
-    public abstract class Player : Character, IMoveable
+    public abstract class Player : Character, IPlayer
     {
         private int score;
         private decimal money;
         private string name;
-        private int positionX;
-        private int positionY;
 
         protected Player(int health, float damage, string name) 
             : base(health, damage)
@@ -56,55 +58,36 @@ namespace BadSanta.Entities
         public bool IsMovingUp { get; set; }
         public bool IsMovingDown { get; set; }
 
-        public int PositionX
-        {
-            get { return this.positionX; }
-            private set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Invalid Position");
-                }
-                this.positionX = value;
-            }
-        }
-
-        public int PositionY
-        {
-            get { return this.positionY; }
-            private set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Invalid Position");
-                }
-                this.positionY = value;
-            }
-        }
-
         public abstract override void Attack(Character enemy);
+
+        public void Update(GameTime gameTime)
+        {
+            this.Move();
+            this.CollisionBox = new Rectangle(this.PositionX, this.PositionY, this.Image.Width, this.Image.Height);
+            
+        }
 
         public void Move()
         {
-            if (IsMovingDown)
+            if (this.IsMovingDown)
             {
-                positionY += 2;
-                IsMovingDown = false;
+                this.PositionY += 2;
+                this.IsMovingDown = false;
             }
-            else if (IsMovingUp)
+            else if (this.IsMovingUp)
             {
-                positionY -= 2;
-                IsMovingUp = false;
+                this.PositionY -= 2;
+                this.IsMovingUp = false;
             }
-            else if (IsMovingLeft)
+            else if (this.IsMovingLeft)
             {
-                positionX -= 2;
-                IsMovingLeft = false;
+                this.PositionX -= 2;
+                this.IsMovingLeft = false;
             }
-            else if (IsMovingRight)
+            else if (this.IsMovingRight)
             {
-                positionX += 2;
-                IsMovingRight = false;
+                this.PositionX += 2;
+                this.IsMovingRight = false;
             }
         }
 
@@ -113,6 +96,26 @@ namespace BadSanta.Entities
             name = name.ToUpper();
 
             return name.All(ch => ch >= 65 && ch <= 90);
+        }
+
+        public void Collision(Rectangle newRectangle)
+        {
+            if (this.CollisionBox.TouchRightOf(newRectangle))
+            {
+                this.PositionX = newRectangle.X + this.CollisionBox.Width;
+            }
+            if (this.CollisionBox.TouchLeftOf(newRectangle))
+            {
+                this.PositionX = newRectangle.X - this.CollisionBox.Width;
+            }
+            if (this.CollisionBox.TouchTopOf(newRectangle))
+            {
+                this.PositionY = newRectangle.Y - this.CollisionBox.Height;
+            }
+            if (this.CollisionBox.TouchBottomOf(newRectangle))
+            {
+                this.PositionY = newRectangle.Y + this.CollisionBox.Height;
+            }
         }
     }
 }

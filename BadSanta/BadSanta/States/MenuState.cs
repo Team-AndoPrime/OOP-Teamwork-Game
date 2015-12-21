@@ -25,9 +25,11 @@ namespace BadSanta.States
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin();
             spriteBatch.Draw(this.menuBackground, new Vector2(0, 0), Color.White);
             
             spriteBatch.Draw(this.playButton, new Vector2(50, 50), Color.White);
+            spriteBatch.End();
         }
 
         public override void Update(GameTime gameTime, InputHandler inputHandler)

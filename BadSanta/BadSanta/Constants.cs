@@ -58,5 +58,9 @@
 
         //Tiles
         public const int TileSize = 36;
+
+        //Level Constants
+        public const int MaxEnemies = 10;
+        public const int MaxGifts = 10;
     }
 }

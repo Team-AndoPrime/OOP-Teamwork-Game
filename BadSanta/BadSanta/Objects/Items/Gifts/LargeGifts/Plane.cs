@@ -1,13 +1,15 @@
-﻿﻿using Microsoft.Xna.Framework.Content;
+﻿﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace BadSanta.Objects.Items.Gifts.LargeGifts
 {
     public class RealPlane : LargeGift
     {
-        public RealPlane(ContentManager content)
+        public RealPlane(Vector2 position)
         {
-            this.Icon = content.Load<Texture2D>(Constants.PlaneIconPath);
+            this.Position = position;
+            this.Icon = Content.Load<Texture2D>(Constants.PlaneIconPath);
         }
     }
 }

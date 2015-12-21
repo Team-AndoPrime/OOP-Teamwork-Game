@@ -1,7 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using BadSanta.Characters.AI;
 using BadSanta.Characters.PlayerControlled;
 using BadSanta.Core;
+using BadSanta.Core.Events;
+using BadSanta.Entities.Factories;
 using BadSanta.Managers;
 using BadSanta.Objects.Tiles;
 using Microsoft.Xna.Framework;
@@ -13,8 +17,7 @@ namespace BadSanta.States
     public class GameState : State
     {
         private Santa player;
-        private Thief enemy;
-
+        private IList<Thief> enemies;
         private readonly LevelManager levelManager;
         private SpriteFont font;
         private Texture2D SideMenu;
@@ -22,6 +25,8 @@ namespace BadSanta.States
         private Viewport MapViewport;
         private Viewport MenuViewport;
         private Viewport InventoryViewport;
+
+        private GiftFactory giftFactory;
 
         public GameState(ContentManager content, GraphicsDeviceManager graphics)
         {
@@ -34,10 +39,18 @@ namespace BadSanta.States
         private void Initialize()
         {
             this.player = new Santa(100, 100, "Pesho", this.Content);
-            this.enemy = new Thief(this.Content);
+            this.enemies = new List<Thief>()
+            {
+                new Thief(this.Content)
+            };
+            this.enemies[0].Killed += EnemyKilled;
+
+
+            this.giftFactory = new GiftFactory();
 
             this.player.PositionX = 36;
             this.player.PositionY = 36;
+
             this.font = this.Content.Load<SpriteFont>("Fonts/mainMenu");
             this.SideMenu = this.Content.Load<Texture2D>("Images/Backgrounds/SideMenu");
 
@@ -73,11 +86,20 @@ namespace BadSanta.States
 
         public override void Update(GameTime gameTime, InputHandler inputHandler)
         {
+            this.giftFactory.Produce(this.levelManager.CurrentLevel.Tiles);
+
             inputHandler.PlayerMovement(this.player);
             this.player.Update(gameTime);
+
             foreach (var tile in this.levelManager.CurrentLevel.Tiles.Where(tile => tile is CollisionTile))
             {
                 this.player.Collision(tile.Rectangle);
+            }
+
+            for (int i = 0; i < this.enemies.Count; i++)
+            {
+                this.enemies[i].Collision(this.player.CollisionBox);
+                this.enemies[i].Update(gameTime);
             }
         }
 
@@ -103,7 +125,16 @@ namespace BadSanta.States
 
             this.levelManager.CurrentLevel.Draw(spriteBatch);
             spriteBatch.Draw(this.player.Image, new Vector2(this.player.PositionX, this.player.PositionY), Color.White);
-            spriteBatch.Draw(this.enemy.Image, new Vector2(this.enemy.PositionX, this.enemy.PositionY), Color.White);
+
+            foreach (var enemy in this.enemies)
+            {
+                spriteBatch.Draw(enemy.Image, new Vector2(enemy.PositionX, enemy.PositionY), Color.White);
+            }
+
+            foreach (var generatedGift in this.giftFactory.GeneratedGifts)
+            {
+                spriteBatch.Draw(generatedGift.Icon, generatedGift.Position, Color.White);
+            }
 
             spriteBatch.End();
 
@@ -114,12 +145,16 @@ namespace BadSanta.States
 
             spriteBatch.Draw(this.SideMenu, new Vector2(0, 0), Color.White);
             spriteBatch.DrawString(this.font, $"{this.player.PositionX} {this.player.PositionY}", new Vector2(150, 150) - this.font.MeasureString($"{this.player.PositionX} {this.player.PositionY}") / 2, Color.Black);
-
             spriteBatch.End();
-            
 
             this.Graphics.GraphicsDevice.Viewport = original;
-            //spriteBatch.DrawString(this.font, $"{this.player.PositionX} {this.player.PositionY}", new Vector2(150, 150) - this.font.MeasureString("Play") / 2, Color.LightSalmon);
+        }
+
+        private void EnemyKilled(object sender, OnKilledEventArgs e)
+        {
+            this.player.Money += e.MoneyAward;
+            this.player.Score += e.ScoreAward;
+            this.enemies.Remove(sender as Thief);
         }
     }
 }

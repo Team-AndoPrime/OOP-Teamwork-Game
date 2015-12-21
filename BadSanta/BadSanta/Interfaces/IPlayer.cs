@@ -1,7 +1,4 @@
-﻿using System;
-using BadSanta.Characters;
-
-namespace BadSanta.Interfaces
+﻿namespace BadSanta.Interfaces
 {
     public interface IPlayer : IMoveable
     {

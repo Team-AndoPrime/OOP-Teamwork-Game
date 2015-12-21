@@ -1,4 +1,5 @@
 ﻿using BadSanta.Managers;
+using BadSanta.Objects;
 using BadSanta.Objects.Tiles;
 using BadSanta.States;
 using Microsoft.Xna.Framework;
@@ -48,8 +49,7 @@ namespace BadSanta.Core
         {
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
             this.stateManager.Content = this.Content;
-            Tile.Content = this.Content;
-            
+            GameObject.Content = this.Content;
         }
 
 

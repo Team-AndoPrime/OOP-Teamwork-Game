@@ -1,4 +1,5 @@
 ﻿using System;
+using BadSanta.Core;
 using BadSanta.Interfaces;
 using BadSanta.Objects;
 using Microsoft.Xna.Framework;
@@ -14,6 +15,7 @@ namespace BadSanta.Characters
         private int positionX;
         private int positionY;
         private Rectangle collisionBox;
+        private bool isAlive;
 
         protected Character(int health, float damage)
         {
@@ -23,10 +25,10 @@ namespace BadSanta.Characters
 
         protected Character() { }
 
-        protected Rectangle CollisionBox
+        public Rectangle CollisionBox
         {
             get { return this.collisionBox; }
-            set { this.collisionBox = value; }
+            protected set { this.collisionBox = value; }
         }
 
         public Texture2D Image
@@ -40,10 +42,6 @@ namespace BadSanta.Characters
             get { return this.positionX; }
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Invalid Position");
-                }
                 this.positionX = value;
             }
         }
@@ -53,12 +51,14 @@ namespace BadSanta.Characters
             get { return this.positionY; }
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Invalid Position");
-                }
                 this.positionY = value;
             }
+        }
+
+        public bool IsAlive
+        {
+            get { return this.isAlive; }
+            set { this.isAlive = value; }
         }
 
         public float Damage
@@ -79,11 +79,34 @@ namespace BadSanta.Characters
             get { return this.health; }
             protected set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("Player health cannot be negative");
-                }
+                this.isAlive = value > 0;
+
                 this.health = value;
+            }
+        }
+
+        public virtual void Update(GameTime gameTime)
+        {
+            this.CollisionBox = new Rectangle(this.PositionX, this.PositionY, this.Image.Width, this.Image.Height);
+        }
+
+        public virtual void Collision(Rectangle newRectangle)
+        {
+            if (this.CollisionBox.TouchRightOf(newRectangle))
+            {
+                this.PositionX = newRectangle.X + this.CollisionBox.Width;
+            }
+            if (this.CollisionBox.TouchLeftOf(newRectangle))
+            {
+                this.PositionX = newRectangle.X - this.CollisionBox.Width;
+            }
+            if (this.CollisionBox.TouchTopOf(newRectangle))
+            {
+                this.PositionY = newRectangle.Y - this.CollisionBox.Height;
+            }
+            if (this.CollisionBox.TouchBottomOf(newRectangle))
+            {
+                this.PositionY = newRectangle.Y + this.CollisionBox.Height;
             }
         }
 

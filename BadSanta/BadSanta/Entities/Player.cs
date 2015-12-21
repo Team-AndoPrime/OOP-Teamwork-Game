@@ -60,11 +60,10 @@ namespace BadSanta.Entities
 
         public abstract override void Attack(Character enemy);
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             this.Move();
-            this.CollisionBox = new Rectangle(this.PositionX, this.PositionY, this.Image.Width, this.Image.Height);
-            
+            base.Update(gameTime);
         }
 
         public void Move()
@@ -96,26 +95,6 @@ namespace BadSanta.Entities
             name = name.ToUpper();
 
             return name.All(ch => ch >= 65 && ch <= 90);
-        }
-
-        public void Collision(Rectangle newRectangle)
-        {
-            if (this.CollisionBox.TouchRightOf(newRectangle))
-            {
-                this.PositionX = newRectangle.X + this.CollisionBox.Width;
-            }
-            if (this.CollisionBox.TouchLeftOf(newRectangle))
-            {
-                this.PositionX = newRectangle.X - this.CollisionBox.Width;
-            }
-            if (this.CollisionBox.TouchTopOf(newRectangle))
-            {
-                this.PositionY = newRectangle.Y - this.CollisionBox.Height;
-            }
-            if (this.CollisionBox.TouchBottomOf(newRectangle))
-            {
-                this.PositionY = newRectangle.Y + this.CollisionBox.Height;
-            }
         }
     }
 }

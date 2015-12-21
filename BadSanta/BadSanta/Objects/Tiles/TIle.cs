@@ -8,18 +8,11 @@ namespace BadSanta.Objects.Tiles
     {
         protected Texture2D TileTexture;
         private Rectangle rectangle;
-        private static ContentManager content;
 
         public Rectangle Rectangle
         {
             get { return this.rectangle; }
             protected set { this.rectangle = value; }
-        }
-
-        public static ContentManager Content
-        {
-            protected get { return content; }
-            set { content = value; }
         }
 
         public void Draw(SpriteBatch spriteBatch)

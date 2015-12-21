@@ -4,9 +4,14 @@ namespace BadSanta.Objects
 {
     public abstract class GameObject
     {
-       protected GameObject()
-       {
-            
-       }
+        private static ContentManager content;
+        
+        public static ContentManager Content
+        {
+            protected get { return content; }
+            set { content = value; }
+        }
+
+
     }
 }

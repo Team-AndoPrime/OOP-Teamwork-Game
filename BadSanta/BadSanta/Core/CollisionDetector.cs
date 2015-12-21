@@ -35,5 +35,13 @@ namespace BadSanta.Core
                      first.Top <= second.Bottom - second.Width / 4 &&
                      first.Bottom >= second.Top + second.Width / 4);
          }
+
+       public static bool TouchAnywhere(this Rectangle firstRectangle, Rectangle secondRectangle)
+       {
+           return TouchBottomOf(firstRectangle, secondRectangle) ||
+                  TouchTopOf(firstRectangle, secondRectangle) ||
+                  TouchLeftOf(firstRectangle, secondRectangle) ||
+                  TouchRightOf(firstRectangle, secondRectangle);
+       }
     }
 }

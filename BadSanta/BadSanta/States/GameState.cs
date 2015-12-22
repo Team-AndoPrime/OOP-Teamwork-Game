@@ -31,6 +31,7 @@ namespace BadSanta.States
         {
             base.Content = content;
             this.levelManager = new LevelManager();
+            this.levelManager.NextLevel();
             this.Graphics = graphics;
             Initialize();
         }
@@ -42,7 +43,9 @@ namespace BadSanta.States
             this.giftFactory = new GiftFactory();
             this.enemyFactory = new EnemyFactory();
 
+            this.giftFactory.Produce(this.levelManager.CurrentLevel.Tiles);
             this.enemyFactory.Produce(this.levelManager.CurrentLevel.Tiles);
+
             foreach (var generatedeEnemy in this.enemyFactory.GeneratedeEnemies)
             {
                 generatedeEnemy.Killed += EnemyKilled;
@@ -86,8 +89,6 @@ namespace BadSanta.States
 
         public override void Update(GameTime gameTime, InputHandler inputHandler)
         {
-            this.giftFactory.Produce(this.levelManager.CurrentLevel.Tiles);
-
             inputHandler.PlayerMovement(this.player);
             this.player.Update(gameTime);
             this.player.Collect(this.giftFactory.GeneratedGifts);

@@ -10,10 +10,17 @@ namespace BadSanta.Objects.Projectiles
     {
         private Texture2D projectileTexture;
         private int projectileVelocity;
+        private char direction;
 
         protected Bullet(int projectileVelocity)
         {
             this.ProjectileVelocity = projectileVelocity;
+        }
+
+        public char Direction
+        {
+            get { return this.direction; }
+            protected set { this.direction = value; }
         }
 
         public int ProjectileVelocity
@@ -32,7 +39,7 @@ namespace BadSanta.Objects.Projectiles
         public Texture2D ProjectileTexture
         {
             get { return this.projectileTexture; }
-            private set { this.projectileTexture = value; }
+            protected set { this.projectileTexture = value; }
         }
 
         public int PositionX { get; set; }
@@ -40,8 +47,22 @@ namespace BadSanta.Objects.Projectiles
 
         public void Update(GameTime gameTime)
         {
-            this.PositionX += this.projectileVelocity;
-            this.PositionY += this.projectileVelocity;
+            switch (this.Direction)
+            {
+                case 'D':
+                    this.PositionY += this.ProjectileVelocity;
+                    break;
+                case 'U':
+                    this.PositionY -= this.ProjectileVelocity;
+                    break;
+                case 'L':
+                    this.PositionX -= this.ProjectileVelocity;
+                    break;
+                case 'R':
+                    this.PositionX += this.ProjectileVelocity;
+                    break;
+            }
+
         }
 
         public void Draw(SpriteBatch spriteBatch)

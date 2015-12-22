@@ -1,4 +1,6 @@
-﻿using BadSanta.Entities;
+﻿using System.Collections.Generic;
+using BadSanta.Core;
+using BadSanta.Entities;
 using BadSanta.Entities.Factories;
 using BadSanta.Objects.Items.Weapons;
 using BadSanta.Objects.Items.Weapons.RangedWeapons;
@@ -20,20 +22,15 @@ namespace BadSanta.Characters.PlayerControlled
             Initialize();
         }
 
-        public bool IsAttacking { get; set; }
-
         private void Initialize()
         {
             this.currentWeapon = new Pistol();
             this.bulletFactory = new BulletFactory();
         }
 
-        public override void Attack(Character enemy)
+        public override void Attack()
         {
-            if (this.IsAttacking)
-            {
-                this.bulletFactory.Produce(this);
-            }
+            this.bulletFactory.Produce(this);
         }
 
         public override void Update(GameTime gameTime)
@@ -41,6 +38,12 @@ namespace BadSanta.Characters.PlayerControlled
             foreach (var generatedBullet in this.bulletFactory.GeneratedBullets)
             {
                 generatedBullet.Update(gameTime);
+            }
+
+            if (this.IsAttacking)
+            {
+                Attack();
+                this.IsAttacking = false;
             }
 
             base.Update(gameTime);
@@ -52,6 +55,32 @@ namespace BadSanta.Characters.PlayerControlled
             foreach (var generatedBullet in this.bulletFactory.GeneratedBullets)
             {
                 generatedBullet.Draw(spriteBatch);
+            }
+        }
+
+        public BulletFactory BulletFactory
+        {
+            get { return this.bulletFactory; }
+        }
+
+        public override void Collision(Rectangle newRectangle)
+        {
+            base.Collision(newRectangle);
+
+            Rectangle bulletCollisionBox;
+
+            for(int i = 0; i < this.bulletFactory.GeneratedBullets.Count; i++)
+            {
+                bulletCollisionBox = new Rectangle(this.bulletFactory.GeneratedBullets[i].PositionX,
+                    this.bulletFactory.GeneratedBullets[i].PositionY,
+                    this.bulletFactory.GeneratedBullets[i].ProjectileTexture.Width,
+                    this.bulletFactory.GeneratedBullets[i].ProjectileTexture.Height);
+
+                if (bulletCollisionBox.TouchAnywhere(newRectangle))
+                {
+                    this.bulletFactory.GeneratedBullets.Remove(this.bulletFactory.GeneratedBullets[i]);
+                }
+
             }
         }
     }

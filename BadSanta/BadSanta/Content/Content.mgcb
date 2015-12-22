@@ -101,17 +101,6 @@
 /processorParam:TextureFormat=Color
 /build:Images/Characters/rsz_santa.png
 
-#begin Images/Projectiles/rsz_riflebullet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:Images/Projectiles/rsz_riflebullet.png
-
 #begin Images/Weapons/pistol.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -183,4 +172,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
 /build:Images/Characters/rsz_dwarf.png
+
+#begin Images/Projectiles/rsz_pistolbullet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Images/Projectiles/rsz_pistolbullet.png
 

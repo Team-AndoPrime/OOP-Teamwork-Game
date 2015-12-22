@@ -8,12 +8,10 @@ namespace BadSanta.States
     {
         public override void Draw(SpriteBatch spriteBatch)
         {
-            throw new System.NotImplementedException();
         }
 
         public override void Update(GameTime gameTime, InputHandler inputHandler)
         {
-            throw new System.NotImplementedException();
         }
     }
 }

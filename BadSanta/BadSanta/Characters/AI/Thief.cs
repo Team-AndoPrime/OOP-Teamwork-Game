@@ -8,11 +8,10 @@ namespace BadSanta.Characters.AI
         public Thief(Vector2 position)
         {
             this.Image = Content.Load<Texture2D>("Images/Characters/rsz_thief");
-            this.Health = 100;
-            this.Damage = 5;
+            this.Health = 150;
             this.Position = position;
-            this.MoneyAward = 20;
-            this.ScoreAward = 150;
+            this.MoneyAward = 6;
+            this.ScoreAward = 10;
         }
     }
 }

@@ -6,6 +6,6 @@ namespace BadSanta.Interfaces
     {
         float Damage { get;}
 
-        void Attack(Character enemy);
+        void Attack();
     }
 }

@@ -27,8 +27,9 @@ namespace BadSanta.States
         private GiftFactory giftFactory;
         private EnemyFactory enemyFactory;
 
-        public GameState(ContentManager content, GraphicsDeviceManager graphics)
+        public GameState(ContentManager content, GraphicsDeviceManager graphics, StateManager stateManager)
         {
+            this.StateManager = stateManager;
             base.Content = content;
             this.levelManager = new LevelManager();
             this.Graphics = graphics;
@@ -37,7 +38,7 @@ namespace BadSanta.States
 
         private void Initialize()
         {
-            this.player = new Santa(100, 100, "Pesho");
+            this.player = new Santa(100, 10, "Pesho");
             
             this.giftFactory = new GiftFactory();
             this.enemyFactory = new EnemyFactory();
@@ -48,7 +49,7 @@ namespace BadSanta.States
                 generatedeEnemy.Killed += EnemyKilled;
             }
 
-            this.player.Position = new Vector2(36, 36);
+            this.player.Position = new Vector2(Constants.PlayerSpawnPoint, Constants.PlayerSpawnPoint);
 
             this.font = this.Content.Load<SpriteFont>("Fonts/mainMenu");
             this.SideMenu = this.Content.Load<Texture2D>("Images/Backgrounds/SideMenu");
@@ -89,6 +90,7 @@ namespace BadSanta.States
             this.giftFactory.Produce(this.levelManager.CurrentLevel.Tiles);
 
             inputHandler.PlayerMovement(this.player);
+
             this.player.Update(gameTime);
             this.player.Collect(this.giftFactory.GeneratedGifts);
 
@@ -99,8 +101,13 @@ namespace BadSanta.States
 
             for (int i = 0; i < this.enemyFactory.GeneratedeEnemies.Count(); i++)
             {
-                this.enemyFactory.GeneratedeEnemies[i].Collision(this.player.CollisionBox);
+                this.enemyFactory.GeneratedeEnemies[i].Collision(this.player);
                 this.enemyFactory.GeneratedeEnemies[i].Update(gameTime);
+            }
+
+            if (this.player.Health <= 0)
+            {
+                this.StateManager.CurrentState = new LoseState();
             }
         }
 
@@ -125,7 +132,7 @@ namespace BadSanta.States
             spriteBatch.Begin();
 
             this.levelManager.CurrentLevel.Draw(spriteBatch);
-            this.player.Draw(spriteBatch);//spriteBatch.Draw(this.player.Image, this.player.Position, Color.White);
+            this.player.Draw(spriteBatch);
 
             foreach (var enemy in this.enemyFactory.GeneratedeEnemies)
             {

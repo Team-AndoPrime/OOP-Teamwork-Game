@@ -1,7 +1,5 @@
 ﻿using BadSanta.Managers;
 using BadSanta.Objects;
-using BadSanta.Objects.Tiles;
-using BadSanta.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -19,7 +17,7 @@ namespace BadSanta.Core
 
         private float scale;
 
-        private Matrix scaleMatrix;
+        //private Matrix scaleMatrix;
 
         public GameEngine()
         {
@@ -32,18 +30,15 @@ namespace BadSanta.Core
             this.graphics.ApplyChanges();
 
             this.IsMouseVisible = true;
-         }
-
+        }
 
         protected override void Initialize()
         {
             this.stateManager = new StateManager(this.Content, this.graphics);
             this.inputHandler = new InputHandler();
 
-            
             base.Initialize();
         }
-
 
         protected override void LoadContent()
         {
@@ -60,27 +55,16 @@ namespace BadSanta.Core
 
         protected override void Update(GameTime gameTime)
         {
-            this.scale = (float) this.graphics.GraphicsDevice.Viewport.Height / Constants.MaxHeight;
-
-            this.scaleMatrix = Matrix.CreateScale(this.scale, this.scale, 1f);
+            //this.scale = (float) this.graphics.GraphicsDevice.Viewport.Height / Constants.MaxHeight;
+            //this.scaleMatrix = Matrix.CreateScale(this.scale, this.scale, 1f);
 
             this.inputHandler.CheckForKeyboardInput(this.stateManager);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (!this.inputHandler.isRunning)
             {
-                this.Exit();
+                Exit();
             }
             
-            if (this.stateManager.CurrentState is GameState)
-            {
-                this.IsMouseVisible = false;
-            }
-            else
-            {
-                this.IsMouseVisible = true;
-                this.inputHandler.CheckForMouseInput(this.stateManager);
-            }
-
             this.stateManager.CurrentState.Update(gameTime, this.inputHandler);
             base.Update(gameTime);
         }
@@ -90,7 +74,7 @@ namespace BadSanta.Core
             this.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //this.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, this.scaleMatrix);
-            
+
             this.stateManager.CurrentState.Draw(this.spriteBatch);
 
             //this.spriteBatch.End();

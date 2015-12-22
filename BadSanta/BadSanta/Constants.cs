@@ -11,11 +11,11 @@
         public const int ArrowProjectileVelocity = 4;
         
         //Pistol bullet Constants
-        public const string PistolProjectileTexturePath = "Images/Projectiles/rsz_riflebullet";
-        public const int PistolProjectileVelocity = 5;
+        public const string PistolProjectileTexturePath = "Images/Projectiles/rsz_pistolbullet";
+        public const int PistolProjectileVelocity = 10;
 
         //Rifle bullet Constants
-        public const string RifleProjectileTexturePath = "Images/Projectiles/rsz_riflebullet";
+        public const string RifleProjectileTexturePath = "Images/Projectiles/rsz_pistolbullet";
         public const int RifleProjectileVelocity = 25;
 
         //Weapon Ranges
@@ -23,7 +23,7 @@
 
         //Machine Gun
         public const int MachineGunBonusDamage = 5;
-        public const string MachineGunWeaponTexture = "Images/Weapons/gunBullet";
+        public const string MachineGunWeaponTexture = "Images/Weapons/pistolBullet";
 
         //Pistol
         public const int PistolbonusDamage = 5;
@@ -60,7 +60,8 @@
         public const int TileSize = 36;
 
         //Level Constants
-        public const int MaxEnemies = 10;
-        public const int MaxGifts = 10;
+        public const int MaxEnemies = 70;
+        public const int MaxGifts = 30;
+        public const int PlayerSpawnPoint = 36;
     }
 }

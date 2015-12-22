@@ -46,6 +46,7 @@ namespace BadSanta.Entities
             }
         }
 
+
         public bool IsShtrak { get; set; }
 
         public int Score
@@ -61,7 +62,7 @@ namespace BadSanta.Entities
         public char LastDirection { get; set; }
 
 
-        public abstract override void Attack(Character enemy);
+        public abstract override void Attack();
 
         public override void Update(GameTime gameTime)
         {

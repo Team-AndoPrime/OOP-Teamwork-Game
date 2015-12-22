@@ -10,6 +10,8 @@ namespace BadSanta.Core
     {
         private MouseState oldMouseState;
 
+        public bool isRunning { get; set; }
+
         public void CheckForKeyboardInput(StateManager stateManager)
         {
             /*if (Keyboard.GetState().IsKeyDown(Keys.F))
@@ -17,12 +19,18 @@ namespace BadSanta.Core
                 this.graphics.ToggleFullScreen();
                 this.graphics.ApplyChanges();
             }*/
+            this.isRunning = true;
+
             if (Keyboard.GetState().IsKeyDown(Keys.P) &&
                 stateManager.CurrentState is MenuState)
             {
-                stateManager.CurrentState = new GameState(stateManager.Content, stateManager.Graphics);
+                stateManager.CurrentState = new GameState(stateManager.Content, stateManager.Graphics, stateManager);
             }
-            
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                this.isRunning = false;
+            }
+
         }
 
         public void PlayerMovement(Player player)
@@ -39,14 +47,17 @@ namespace BadSanta.Core
             {
                 player.IsMovingLeft = true;
             }
-
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 player.IsMovingRight = true;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            if (Keyboard.GetState().IsKeyDown(Keys.E))
             {
                 player.IsShtrak = true;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && !player.IsAttacking)
+            {
+                player.IsAttacking = true;
             }
 
         }

@@ -8,11 +8,10 @@ namespace BadSanta.Characters.AI
         public Dwarf(Vector2 position)
         {
             this.Image = Content.Load<Texture2D>("Images/Characters/rsz_dwarf");
-            this.Health = 100;
-            this.Damage = 0;
+            this.Health = 50;
             this.Position = position;
-            this.MoneyAward = 100;
-            this.ScoreAward = 50;
+            this.MoneyAward = 4;
+            this.ScoreAward = 20;
         }
     }
 }

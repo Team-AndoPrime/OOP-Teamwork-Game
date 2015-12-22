@@ -24,6 +24,9 @@ namespace BadSanta.Characters
 
         protected Character() { }
 
+
+        public bool IsAttacking { get; set; }
+
         public Rectangle CollisionBox
         {
             get { return this.collisionBox; }
@@ -64,7 +67,7 @@ namespace BadSanta.Characters
         public int Health
         {
             get { return this.health; }
-            protected set
+            set
             {
                 this.isAlive = value > 0;
 
@@ -106,7 +109,7 @@ namespace BadSanta.Characters
             this.Position = new Vector2(positionX, positionY);
         }
 
-        public abstract void Attack(Character enemy);
+        public abstract void Attack();
         
     }
 }

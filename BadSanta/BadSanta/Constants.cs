@@ -63,5 +63,6 @@
         public const int MaxEnemies = 70;
         public const int MaxGifts = 30;
         public const int PlayerSpawnPoint = 36;
+        public const int MaxLevel = 2;
     }
 }

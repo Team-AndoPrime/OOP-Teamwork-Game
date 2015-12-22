@@ -29,6 +29,7 @@ namespace BadSanta.Entities.Factories
 
         public void Produce(IEnumerable<Tile> level)
         {
+            
             while (this.gifts.Count < Constants.MaxGifts)
             {
                 int randomGift = this.Generator.Next(1, 6);
@@ -89,5 +90,10 @@ namespace BadSanta.Entities.Factories
         }
 
         public Random Generator { get; }
+
+        public void Clear()
+        {
+            this.gifts.Clear();
+        }
     }
 }

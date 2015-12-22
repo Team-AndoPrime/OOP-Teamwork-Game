@@ -11,8 +11,9 @@ namespace BadSanta.Managers
         {
             this.currentLevelNumber = 0;
             this.CreateLevel();
-            
         }
+
+        public int CurrentLevelNumber => this.currentLevelNumber;
 
         private void CreateLevel()
         {

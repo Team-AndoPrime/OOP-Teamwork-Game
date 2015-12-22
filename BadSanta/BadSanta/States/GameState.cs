@@ -32,7 +32,6 @@ namespace BadSanta.States
             this.StateManager = stateManager;
             base.Content = content;
             this.levelManager = new LevelManager();
-            this.levelManager.NextLevel();
             this.Graphics = graphics;
             Initialize();
         }
@@ -100,15 +99,35 @@ namespace BadSanta.States
                 this.player.Collision(tile.Rectangle);
             }
 
+            
+            if (this.player.Health <= 0)
+            {
+                this.StateManager.CurrentState = new LoseState(this.Content);
+            }
+
+            if (this.player.Score >= 50 * (this.levelManager.CurrentLevelNumber + 1))
+            {
+                  if (this.levelManager.CurrentLevelNumber < Constants.MaxLevel)
+                {
+                    this.levelManager.NextLevel();
+                    this.giftFactory.Clear();
+                    this.giftFactory.Produce(this.levelManager.CurrentLevel.Tiles);
+                    this.enemyFactory.Clear();
+                    this.enemyFactory.Produce(this.levelManager.CurrentLevel.Tiles);
+                    this.player.Money = 0;
+                    return;
+                }
+                else
+                {
+                    this.Content.Unload();
+                    this.StateManager.CurrentState = new VictoryState(this.Content);
+                }
+            }
+
             for (int i = 0; i < this.enemyFactory.GeneratedeEnemies.Count(); i++)
             {
                 this.enemyFactory.GeneratedeEnemies[i].Collision(this.player);
                 this.enemyFactory.GeneratedeEnemies[i].Update(gameTime);
-            }
-
-            if (this.player.Health <= 0)
-            {
-                this.StateManager.CurrentState = new LoseState();
             }
         }
 
@@ -152,6 +171,7 @@ namespace BadSanta.States
             spriteBatch.Begin();
 
             spriteBatch.Draw(this.SideMenu, new Vector2(0, 0), Color.White);
+            spriteBatch.DrawString(this.font, $"{this.levelManager.CurrentLevelNumber}", new Vector2(150, 300), Color.Black);
             spriteBatch.End();
 
             this.Graphics.GraphicsDevice.Viewport = original;

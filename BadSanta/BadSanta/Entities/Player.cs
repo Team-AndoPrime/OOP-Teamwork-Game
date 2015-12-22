@@ -107,6 +107,7 @@ namespace BadSanta.Entities
                 return;
             }
             this.Money -= gift.GiftPrice;
+            this.Score += 15;
             gifts.Remove(gift);
         }
 

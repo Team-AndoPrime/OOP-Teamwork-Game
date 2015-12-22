@@ -2,6 +2,7 @@
 {
     public enum Enemies
     {
-        Thief
+        Thief = 1,
+        Dwarf = 2
     }
 }

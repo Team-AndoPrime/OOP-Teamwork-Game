@@ -12,12 +12,11 @@ namespace BadSanta.Characters
         private Texture2D img;
         private int health;
         private float damage;
-        private int positionX;
-        private int positionY;
+        private Vector2 position;
         private Rectangle collisionBox;
         private bool isAlive;
 
-        protected Character(int health, float damage)
+        internal Character(int health, float damage)
         {
             this.Damage = damage;
             this.Health = health;
@@ -37,22 +36,10 @@ namespace BadSanta.Characters
             protected set { this.img = value; }
         }
 
-        public int PositionX
+        public Vector2 Position
         {
-            get { return this.positionX; }
-            set
-            {
-                this.positionX = value;
-            }
-        }
-
-        public int PositionY
-        {
-            get { return this.positionY; }
-            set
-            {
-                this.positionY = value;
-            }
+            get { return this.position; }
+            set { this.position = value; }
         }
 
         public bool IsAlive
@@ -87,31 +74,39 @@ namespace BadSanta.Characters
 
         public virtual void Update(GameTime gameTime)
         {
-            this.CollisionBox = new Rectangle(this.PositionX, this.PositionY, this.Image.Width, this.Image.Height);
+            this.CollisionBox = new Rectangle((int)this.Position.X, (int)this.Position.Y, this.Image.Width, this.Image.Height);
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(this.Image, this.Position, Color.White);
         }
 
         public virtual void Collision(Rectangle newRectangle)
         {
+            int positionX = (int) this.Position.X;
+            int positionY = (int) this.Position.Y;
+
             if (this.CollisionBox.TouchRightOf(newRectangle))
             {
-                this.PositionX = newRectangle.X + this.CollisionBox.Width;
+                positionX = newRectangle.X + this.CollisionBox.Width;
             }
             if (this.CollisionBox.TouchLeftOf(newRectangle))
             {
-                this.PositionX = newRectangle.X - this.CollisionBox.Width;
+                positionX = newRectangle.X - this.CollisionBox.Width;
             }
             if (this.CollisionBox.TouchTopOf(newRectangle))
             {
-                this.PositionY = newRectangle.Y - this.CollisionBox.Height;
+                positionY = newRectangle.Y - this.CollisionBox.Height;
             }
             if (this.CollisionBox.TouchBottomOf(newRectangle))
             {
-                this.PositionY = newRectangle.Y + this.CollisionBox.Height;
+                positionY = newRectangle.Y + this.CollisionBox.Height;
             }
+            this.Position = new Vector2(positionX, positionY);
         }
 
         public abstract void Attack(Character enemy);
-
         
     }
 }

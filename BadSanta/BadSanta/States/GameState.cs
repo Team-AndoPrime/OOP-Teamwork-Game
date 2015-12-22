@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BadSanta.Characters.AI;
+﻿using System.Linq;
+using BadSanta.Characters;
 using BadSanta.Characters.PlayerControlled;
 using BadSanta.Core;
 using BadSanta.Core.Events;
@@ -17,9 +15,9 @@ namespace BadSanta.States
     public class GameState : State
     {
         private Santa player;
-        private IList<Thief> enemies;
         private readonly LevelManager levelManager;
         private SpriteFont font;
+
         private Texture2D SideMenu;
 
         private Viewport MapViewport;
@@ -27,6 +25,7 @@ namespace BadSanta.States
         private Viewport InventoryViewport;
 
         private GiftFactory giftFactory;
+        private EnemyFactory enemyFactory;
 
         public GameState(ContentManager content, GraphicsDeviceManager graphics)
         {
@@ -38,18 +37,18 @@ namespace BadSanta.States
 
         private void Initialize()
         {
-            this.player = new Santa(100, 100, "Pesho", this.Content);
-            this.enemies = new List<Thief>()
-            {
-                new Thief(this.Content)
-            };
-            this.enemies[0].Killed += EnemyKilled;
-
-
+            this.player = new Santa(100, 100, "Pesho");
+            
             this.giftFactory = new GiftFactory();
+            this.enemyFactory = new EnemyFactory();
 
-            this.player.PositionX = 36;
-            this.player.PositionY = 36;
+            this.enemyFactory.Produce(this.levelManager.CurrentLevel.Tiles);
+            foreach (var generatedeEnemy in this.enemyFactory.GeneratedeEnemies)
+            {
+                generatedeEnemy.Killed += EnemyKilled;
+            }
+
+            this.player.Position = new Vector2(36, 36);
 
             this.font = this.Content.Load<SpriteFont>("Fonts/mainMenu");
             this.SideMenu = this.Content.Load<Texture2D>("Images/Backgrounds/SideMenu");
@@ -63,6 +62,7 @@ namespace BadSanta.States
                 MinDepth = 0,
                 MaxDepth = 1
             };
+
             this.MenuViewport = new Viewport
             {
                 X = this.Graphics.PreferredBackBufferHeight + 420,
@@ -90,16 +90,17 @@ namespace BadSanta.States
 
             inputHandler.PlayerMovement(this.player);
             this.player.Update(gameTime);
+            this.player.Collect(this.giftFactory.GeneratedGifts);
 
             foreach (var tile in this.levelManager.CurrentLevel.Tiles.Where(tile => tile is CollisionTile))
             {
                 this.player.Collision(tile.Rectangle);
             }
 
-            for (int i = 0; i < this.enemies.Count; i++)
+            for (int i = 0; i < this.enemyFactory.GeneratedeEnemies.Count(); i++)
             {
-                this.enemies[i].Collision(this.player.CollisionBox);
-                this.enemies[i].Update(gameTime);
+                this.enemyFactory.GeneratedeEnemies[i].Collision(this.player.CollisionBox);
+                this.enemyFactory.GeneratedeEnemies[i].Update(gameTime);
             }
         }
 
@@ -124,11 +125,11 @@ namespace BadSanta.States
             spriteBatch.Begin();
 
             this.levelManager.CurrentLevel.Draw(spriteBatch);
-            spriteBatch.Draw(this.player.Image, new Vector2(this.player.PositionX, this.player.PositionY), Color.White);
+            this.player.Draw(spriteBatch);//spriteBatch.Draw(this.player.Image, this.player.Position, Color.White);
 
-            foreach (var enemy in this.enemies)
+            foreach (var enemy in this.enemyFactory.GeneratedeEnemies)
             {
-                spriteBatch.Draw(enemy.Image, new Vector2(enemy.PositionX, enemy.PositionY), Color.White);
+                spriteBatch.Draw(enemy.Image, enemy.Position, Color.White);
             }
 
             foreach (var generatedGift in this.giftFactory.GeneratedGifts)
@@ -138,13 +139,11 @@ namespace BadSanta.States
 
             spriteBatch.End();
 
-
             this.Graphics.GraphicsDevice.Viewport = this.MenuViewport;
 
             spriteBatch.Begin();
 
             spriteBatch.Draw(this.SideMenu, new Vector2(0, 0), Color.White);
-            spriteBatch.DrawString(this.font, $"{this.player.PositionX} {this.player.PositionY}", new Vector2(150, 150) - this.font.MeasureString($"{this.player.PositionX} {this.player.PositionY}") / 2, Color.Black);
             spriteBatch.End();
 
             this.Graphics.GraphicsDevice.Viewport = original;
@@ -154,7 +153,7 @@ namespace BadSanta.States
         {
             this.player.Money += e.MoneyAward;
             this.player.Score += e.ScoreAward;
-            this.enemies.Remove(sender as Thief);
+            this.enemyFactory.GeneratedeEnemies.Remove(sender as Enemy);
         }
     }
 }

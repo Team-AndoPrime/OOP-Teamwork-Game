@@ -44,6 +44,10 @@ namespace BadSanta.Core
             {
                 player.IsMovingRight = true;
             }
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                player.IsShtrak = true;
+            }
 
         }
 

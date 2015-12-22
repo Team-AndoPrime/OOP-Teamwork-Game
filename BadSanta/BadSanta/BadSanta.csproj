@@ -38,8 +38,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Characters\AI\Dwarf.cs" />
     <Compile Include="Characters\AI\Thief.cs" />
     <Compile Include="Characters\Character.cs" />
+    <Compile Include="Characters\Enemy.cs" />
     <Compile Include="Characters\PlayerControlled\Santa.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Core\Events\OnKilledEventArgs.cs" />
@@ -47,6 +49,8 @@
     <Compile Include="Core\InputHandler.cs" />
     <Compile Include="Core\LevelLoader.cs" />
     <Compile Include="Core\CollisionDetector.cs" />
+    <Compile Include="Entities\Factories\BulletFactory.cs" />
+    <Compile Include="Entities\Factories\EnemyFactory.cs" />
     <Compile Include="Entities\Factories\GiftFactory.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Enumerations\Enemies.cs" />
@@ -101,8 +105,10 @@
     <Compile Include="Objects\Tiles\VisualTile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\GameState.cs" />
+    <Compile Include="States\LoseState.cs" />
     <Compile Include="States\MenuState.cs" />
     <Compile Include="States\State.cs" />
+    <Compile Include="States\VictoryState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

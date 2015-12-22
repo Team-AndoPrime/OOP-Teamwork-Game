@@ -7,6 +7,8 @@
         bool IsMovingUp { get; }
         bool IsMovingDown { get; }
 
+        char LastDirection { get; }
+
         void Move();
     }
 }

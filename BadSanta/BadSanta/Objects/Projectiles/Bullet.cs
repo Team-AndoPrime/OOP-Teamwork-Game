@@ -1,4 +1,5 @@
-﻿using BadSanta.Exceptions;
+﻿using System.Runtime.InteropServices;
+using BadSanta.Exceptions;
 using BadSanta.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,8 +10,8 @@ namespace BadSanta.Objects.Projectiles
     {
         private Texture2D projectileTexture;
         private int projectileVelocity;
-        protected Bullet(int projectileVelocity)
 
+        protected Bullet(int projectileVelocity)
         {
             this.ProjectileVelocity = projectileVelocity;
         }
@@ -36,6 +37,12 @@ namespace BadSanta.Objects.Projectiles
 
         public int PositionX { get; set; }
         public int PositionY { get; set; }
+
+        public void Update(GameTime gameTime)
+        {
+            this.PositionX += this.projectileVelocity;
+            this.PositionY += this.projectileVelocity;
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {

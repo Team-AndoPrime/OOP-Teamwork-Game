@@ -29,7 +29,7 @@ namespace BadSanta.Entities.Factories
 
         public void Produce(IEnumerable<Tile> level)
         {
-            if (this.gifts.Count < Constants.MaxGifts)
+            while (this.gifts.Count < Constants.MaxGifts)
             {
                 int randomGift = this.Generator.Next(1, 6);
                 Vector2 newPosition = ChoosePosition(level);
